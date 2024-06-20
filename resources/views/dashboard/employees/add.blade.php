@@ -200,9 +200,7 @@
                                     {{-- Image Inputs --}}
                                     <div class="form-group col-12">
                                         <label for="example-text-input">صورة الموظف</label>
-                                        <input class="form-control" accept="image/*" name="photo" value="{{ old('photo') }}"
-                                               type="file" id="example-text-input" onchange="loadFile(event)">
-                                        <img class="rounded-circle avatar-xl my-3" id="output" />
+                                        <input type="file" name="photo" class="dropify" data-default-file="{{URL::asset('dashboard/assets/img/photos/1.jpg')}}" data-height="200"  />
                                         <div id="photo-error" class="error-message alert alert-danger d-none"></div>
                                     </div>
                                 </div>
@@ -210,8 +208,9 @@
                                 {{-- Submit --}}
                                 <div class="row row-xs wd-xl-80p">
                                     <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0"><button type="submit"
-                                                                                             class="btn btn-success btn-with-icon btn-block"><i class="typcn typcn-edit"></i> تأكيد
-                                            البيانات</button></div>
+                                     class="btn btn-success btn-with-icon btn-block"><i class="typcn typcn-edit"></i> تأكيد
+                                            البيانات</button>
+                                    </div>
                                     <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0"><a
                                             href="{{ route('dashboard.employees.index') }}" type="submit"
                                             class="btn btn-info btn-with-icon btn-block"><i
