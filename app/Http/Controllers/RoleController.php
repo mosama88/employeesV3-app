@@ -32,13 +32,11 @@ class RoleController extends Controller
         return view('dashboard.roles.create', compact('permission'));
     }
 
-
     public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
-            'permission' => 'required|array',
-            'permission.*' => 'exists:permissions,name', // Validate each permission name
+            'permission' => 'required',
         ]);
 
         $role = Role::create(['name' => $request->input('name')]);
@@ -47,8 +45,6 @@ class RoleController extends Controller
         return redirect()->route('dashboard.roles.index')
             ->with('success', 'Role created successfully');
     }
-
-
 
     public function show($id)
     {
@@ -84,7 +80,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('roles.index')
+        return redirect()->route('dashboard.roles.index')
             ->with('success', 'Role updated successfully');
     }
 
