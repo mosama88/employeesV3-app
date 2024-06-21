@@ -15,7 +15,6 @@ class Vacation extends Model
 
     public $totalDays;
     protected $fillable = [
-        'code_num',
         'type',
         'start',
         'to',
@@ -78,20 +77,8 @@ class Vacation extends Model
 
 
 
-protected static function boot()
-{
-    parent::boot();
 
-    static::creating(function ($vacation) {
-        $lastvacation = static::orderBy('id', 'desc')->first();
 
-        // Set the starting code if no companies exist yet
-        $code = ($lastvacation) ? $lastvacation->id + 1 : 1001;
-
-        $vacation->code_num = 'vac' . $code;
-    });
-}
-   
 
 
     public function getTotalDaysExcludingFridays()
