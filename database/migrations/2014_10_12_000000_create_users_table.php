@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('status', 10);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,7 +28,6 @@ return new class extends Migration
             'name' => 'محمد أسامه',
             'email' => 'mosama@dt.com',
             'password' => Hash::make('@Osama88'), // Hashing the password using bcrypt
-            'status' => 'مفعل',
         ],);
 
 
@@ -37,7 +35,6 @@ return new class extends Migration
             'name' => 'هبة الله سمير',
             'email' => 'heba@dt.com',
             'password' => Hash::make('123456789'), // Hashing the password using bcrypt
-            'status' => 'مفعل',
         ],);
     }
 
@@ -48,4 +45,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 };
