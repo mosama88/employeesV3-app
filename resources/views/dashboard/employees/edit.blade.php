@@ -1,27 +1,35 @@
 @extends('dashboard.layouts.master')
 @section('title', 'تعديل بيانات الموظف')
 @section('css')
+
+    <!-- Internal Select2 css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal  Datetimepicker-slider css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
+    <!-- Internal Spectrum-colorpicker css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{URL::asset('dashboard/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <!---Internal Fancy uploader css-->
-    <link href="{{ asset('dashboard') }}/assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
+    <link href="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
     <!--Internal Sumoselect css-->
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/sumoselect/sumoselect-rtl.css">
-
+    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/sumoselect/sumoselect-rtl.css')}}">
     <!--Internal  TelephoneInput css-->
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/telephoneinput/telephoneinput-rtl.css">
-
-    <!--- Animations css-->
-    <link href="{{ asset('dashboard') }}/assets/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 @endsection
-
-@section('page-title', 'تعديل بيانات الموظف')
-@section('page-link-back')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a>
-    </li>
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.employees.index') }}">الموظفين</a>
-    </li>
+@section('page-header')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">الموظفين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل بيانات الموظف</span>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
 @endsection
-@section('current-page', 'تعديل بيانات الموظف')
 @section('content')
 
     <div class="row row-sm">
@@ -212,16 +220,18 @@
                             </div>
                         </div>
 
+
+
                         <div class="row">
                             {{-- Image Inputs --}}
                             <div class="form-group col-12">
-                                <label for="example-text-input">تغيير صورة الموظف</label>
-                                <input class="form-control" accept="image/*" name="photo" value="{{ old('photo') }}"
-                                    type="file" id="example-text-input" onchange="loadFile(event)">
-                                <img class="rounded-circle avatar-xl my-3" id="output" />
+                                <label for="example-text-input">صورة الموظف</label>
+                                <p class="text-danger">* صيغة المرفق jpeg ,jpg ,png, gif </p>
+                                <input type="file" name="photo" class="dropify" data-default-file="{{URL::asset('dashboard/assets/img/photos/1.jpg')}}" data-height="200"  />
                                 <div id="photo-error" class="error-message alert alert-danger d-none"></div>
                             </div>
                         </div>
+
 
                         {{-- Submit --}}
                         <div class="row row-xs wd-xl-80p">
@@ -241,48 +251,44 @@
 
 @endsection
 
-@section('scripts')
 
-    <!-- Internal Select2.min js -->
-    <script src="{{ asset('dashboard/assets/plugins/select2/js/select2.min.js') }}"></script>
-
-
-    <!--Internal Ion.rangeSlider.min js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-
-    <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
-
-    <!-- Ionicons js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
-
-    <!--Internal  pickerjs js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/pickerjs/picker.min.js"></script>
-
-
-
-    <!--Internal  Form-elements js-->
-    <script src="{{ asset('dashboard') }}/assets/js/advanced-form-elements.js"></script>
-
-    <!--Internal Sumoselect js-->
-    <script src="{{ asset('dashboard') }}/assets/plugins/sumoselect/jquery.sumoselect.js"></script>
-
-    <!-- Internal  js-->
-
+@section('js')
     <!--Internal  Datepicker js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
-
-
+    <script src="{{URL::asset('dashboard/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
     <!--Internal  jquery.maskedinput js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
-
+    <script src="{{URL::asset('dashboard/assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
     <!--Internal  spectrum-colorpicker js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/spectrum-colorpicker/spectrum.js"></script>
-
-
-
+    <script src="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+    <!-- Internal Select2.min js -->
+    <script src="{{URL::asset('dashboard/assets/plugins/select2/js/select2.min.js')}}"></script>
     <!--Internal Ion.rangeSlider.min js -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+    <!--Internal  jquery-simple-datetimepicker js -->
+    <script src="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+    <!-- Ionicons js -->
+    <script src="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+    <!--Internal  pickerjs js -->
+    <script src="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.js')}}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{URL::asset('dashboard/assets/js/form-elements.js')}}"></script>
+
+    <!--Internal Fileuploads js-->
+    <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+    <!--Internal Fancy uploader js-->
+    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+    <!--Internal  Form-elements js-->
+    <script src="{{URL::asset('dashboard/assets/js/advanced-form-elements.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/js/select2.js')}}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{URL::asset('dashboard/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
+    <!-- Internal TelephoneInput js-->
+    <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 
     <script src="{{ asset('dashboard/assets/js/projects/add-employee.js') }}"></script>
 

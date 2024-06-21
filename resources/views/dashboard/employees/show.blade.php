@@ -1,20 +1,28 @@
 @extends('dashboard.layouts.master')
-@section('title', 'الأجازات')
-@section('page-title', 'الأجازات')
-@section('page-link-back')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a>
-    </li>
-@endsection
-@section('current-page', 'الأجازات')
+@section('title', 'عرض أجازات الموظف')
 @section('css')
-    <link href="{{ asset('dashboard/assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('dashboard/assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <!-- Internal Data table css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 @endsection
-
 @php
     $currentYear = date('Y');
     $startYear = $currentYear - 5; // Adjust the number of previous years you want to display
 @endphp
+@section('page-header')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">عرض أجازات الموظف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جدول عرض أجازات الموظف</span>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
+@endsection
 @section('content')
     @include('dashboard.messages_alert')
 
@@ -161,7 +169,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 mx-auto">
+                        <div class="col-6 my-3 mx-auto">
                             <div class="btn-group dropdown">
                                 <button data-toggle="dropdown" class="btn btn-primary btn-block"
                                     class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuDate"
@@ -372,37 +380,37 @@
 
             </div>
         </div>
-
+    </div>
+    </div>
 
         <div class="main-navbar-backdrop"></div>
-    @endsection
+        @endsection
 
-    @section('scripts')
+        @section('js')
 
-        <!-- Internal Data tables -->
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/jszip.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('dashboard/assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
 
-        <!--Internal  Datatable js -->
-        <script src="{{ asset('dashboard/assets/js/table-data.js') }}"></script>
-
-        <script>
-            function setActiveYear(year) {
-                document.getElementById('selectedYear').textContent = year;
-            }
-        </script>
-    @endsection
+            <!-- Internal Data tables -->
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jszip.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+            <!--Internal  Datatable js -->
+            <script src="{{URL::asset('dashboard/assets/js/table-data.js')}}"></script>
+            <script>
+                function setActiveYear(year) {
+                    document.getElementById('selectedYear').textContent = year;
+                }
+            </script>
+@endsection

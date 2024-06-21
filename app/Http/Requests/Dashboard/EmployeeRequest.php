@@ -45,7 +45,7 @@ class EmployeeRequest extends FormRequest
             'notes' => 'nullable|string|max:1000',
             'address_id'=> 'required|exists:addresses,id',
             'department_id'=> 'required|exists:departments,id',
-            'photo'=> 'image|mimes:png,jpg,jpeg,gif,webp',
+            'photo'=> 'image|mimes:png,jpg,jpeg,gif',
         ];
     }
 
@@ -87,7 +87,7 @@ class EmployeeRequest extends FormRequest
             'department_id.exists' => 'النيابة التابع لها المحدد غير موجود.',
             ########################################################
             'photo.image'=>'يجب أن يكون حقل الصورة من نوع صورة.',
-            'photo.mimes'=>'يجب أن يكون حقل الصورة ملفًا من النوع:، gif png، jpg، jpeg، webp.',
+            'photo.mimes'=>'يجب أن يكون حقل الصورة ملفًا من النوع:، gif png، jpg، jpeg.',
             ########################################################
             'notes.max'=>'برجاء كتابة الملاحظات أقل من 1000 كلمة.',
         ];

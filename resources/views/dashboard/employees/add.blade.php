@@ -99,13 +99,13 @@
                                     {{-- birth_date Inputs --}}
                                     <div class="form-group col-4">
                                         <label for="birth_date">تاريخ الميلاد</label>
-                                        <input id="birth_date" class="form-control fc-datepicker" name="birth_date" placeholder="MM/DD/YYYY" type="date">
+                                        <input id="birth_date" class="form-control" name="birth_date" placeholder="MM/DD/YYYY" type="date">
                                         <div id="birth_date-error" class="error-message alert alert-danger d-none"></div>
                                     </div>
                                     {{-- hiring_date Inputs --}}
                                     <div class="form-group col-4">
                                         <label for="hiring_date">تاريخ التعيين</label>
-                                        <input id="hiring_date" class="form-control fc-datepicker" name="hiring_date" placeholder="MM/DD/YYYY" type="date">
+                                        <input id="hiring_date" class="form-control" name="hiring_date" placeholder="MM/DD/YYYY" type="date">
                                         <div id="hiring_date-error" class="error-message alert alert-danger d-none"></div>
                                     </div>
 
@@ -113,7 +113,7 @@
                                     {{-- start_from Inputs --}}
                                     <div class="form-group col-4">
                                         <label for="start_from">بداية أستلام العمل بالادارة</label>
-                                        <input class="form-control fc-datepicker"
+                                        <input class="form-control"
                                                name="start_from" placeholder="MM/DD/YYYY" type="date">
                                         <div id="start_from-error" class="error-message alert alert-danger d-none"></div>
                                     </div>
@@ -200,6 +200,7 @@
                                     {{-- Image Inputs --}}
                                     <div class="form-group col-12">
                                         <label for="example-text-input">صورة الموظف</label>
+                                        <p class="text-danger">* صيغة المرفق jpeg ,jpg ,png, gif </p>
                                         <input type="file" name="photo" class="dropify" data-default-file="{{URL::asset('dashboard/assets/img/photos/1.jpg')}}" data-height="200"  />
                                         <div id="photo-error" class="error-message alert alert-danger d-none"></div>
                                     </div>
