@@ -1,21 +1,37 @@
 @extends('dashboard.layouts.master')
-@section('title', 'تعديل طلب أجازة')
-
-@section('page-title', 'تعديل طلب أجازة')
-@section('page-link-back')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="fas fa-home"></i></a>
-    </li>
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.vacations.index') }}">تعديل طلب أجازة</a>
-    </li>
-@endsection
-@section('current-page', 'تعديل طلب أجازة')
+@section('title', 'تعديل طلب أجازه')
 @section('css')
-    <link href="{{ asset('dashboard/assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('dashboard/assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+
+    <!-- Internal Select2 css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal  Datetimepicker-slider css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
+    <!-- Internal Spectrum-colorpicker css -->
+    <link href="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{URL::asset('dashboard/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+    <!---Internal Fancy uploader css-->
+    <link href="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
+    <!--Internal Sumoselect css-->
+    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/sumoselect/sumoselect-rtl.css')}}">
+    <!--Internal  TelephoneInput css-->
+    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
+@endsection
+@section('page-header')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">الأجازات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل طلب أجازه</span>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
 @endsection
 @section('content')
-    {{--    @include('dashboard.messages_alert') --}}
-
+    @include('dashboard.messages_alert')
     <div class="row row-sm">
         <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
             <div class="card  box-shadow-0 ">
@@ -23,17 +39,14 @@
                     <h4 class="card-title mb-1 text-center">
                          <div class="d-flex justify-content-between">
                         <h4 class="card-title mx-auto mt-3"><span class="card-category" style="color: #0BA2E0">رقم الاجازه
-                            {{ $vacation->code_num }}</span>
+                            {{ $vacation->name }}</span>
                         </h4>
                     </div></h4>
                 </div>
                 <div class="card-body pt-0">
-
-
+                    {{--Photo--}}
                     <div class="row">
                         <div class="col-6">
-
-
                             @if ($vacation->image)
                                 <img class="img-thumbnail rounded me-2 my-4" alt="200x200"
                                     style="width: 200px; height:200px"
@@ -46,7 +59,6 @@
                                     data-holder-rendered="true">
                             @endif
                         </div>
-
                     </div>
                     {{-- Form Edit Vacation --}}
                     <form id="vacationForm" action="{{ route('dashboard.vacations.update', $vacation->id) }}" method="POST"
@@ -82,7 +94,7 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputaddress">نوع الأجازة</label>
                                 <select name="type"
-                                    class="form-control select2-no-search @error('type') is-invalid @enderror"
+                                    class="form-control select @error('type') is-invalid @enderror"
                                     id="selectFormgrade">
                                     <option disabled selected>افتح قائمة التحديد</option>
                                     <option value="satisfying"{{ $vacation->type === 'satisfying' ? 'selected' : '' }}>مرضى
@@ -108,7 +120,7 @@
                             <div class="form-group col-6" id="int_ext_field">
                                 <label for="intExtSelect">داخلية / خارجية</label>
                                 <select name="int_ext" id="intExtSelect"
-                                    class="form-control select2 @error('int_ext') is-invalid @enderror">
+                                    class="form-control select @error('int_ext') is-invalid @enderror">
                                     <option disabled selected>افتح قائمة التحديد</option>
                                     <option value="internal" {{ $vacation->int_ext === 'internal' ? 'selected' : '' }}>
                                         داخلية</option>
@@ -122,7 +134,7 @@
                             <div class="form-group col-6" id="department_field">
                                 <label for="departmentSelect">النيابات</label>
                                 <select name="department_id" id="departmentSelect"
-                                    class="form-control select2 @error('department_id') is-invalid @enderror">
+                                    class="form-control select @error('department_id') is-invalid @enderror">
                                     <option disabled selected>افتح قائمة التحديد</option>
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->id }}"
@@ -141,7 +153,7 @@
                             <div class="form-group col-6" id="acting_employee_field">
                                 <label for="actingEmployeeSelect">القائم بأعماله</label>
                                 <select name="acting_employee_id" id="actingEmployeeSelect"
-                                    class="form-control select2 @error('acting_employee_id') is-invalid @enderror">
+                                    class="form-control select @error('acting_employee_id') is-invalid @enderror">
                                     <option disabled selected>افتح قائمة التحديد</option>
                                     @foreach ($employees as $employee)
                                         <option value="{{ $employee->id }}"
@@ -158,7 +170,7 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputto">من يوم</label>
-                                <input class="form-control fc-datepicker" name="start" value="{{ $vacation->start }}"
+                                <input class="form-control" name="start" value="{{ $vacation->start }}"
                                     placeholder="MM/DD/YYYY" type="date">
                                 <div id="start-error" class="error-message alert alert-danger d-none"></div>
                             </div>
@@ -166,7 +178,7 @@
                             {{-- To Inputs --}}
                             <div class="form-group col-6">
                                 <label for="exampleInputto">إلى يوم</label>
-                                <input id="toInput" class="form-control fc-datepicker" name="to"
+                                <input id="toInput" class="form-control" name="to"
                                     value="{{ $vacation->to }}" placeholder="MM/DD/YYYY" type="date">
                                 <div id="to-error" class="error-message alert alert-danger d-none"></div>
                             </div>
@@ -199,14 +211,12 @@
 
                         <div class="row">
                             {{-- Image Inputs --}}
-                            <div class="form-group col-10">
+                            <div class="form-group col-12">
                                 <label for="example-text-input" class="col-form-label">المرفقات</label>
-                                <input class="form-control @error('photo') is-invalid @enderror" accept="photo/*"
-                                    name="photo" type="file" id="example-text-input" onchange="loadFile(event)">
-                                <img class="rounded-circle avatar-xl my-3" />
+                                <p class="text-danger">* صيغة المرفق docx, doc, pdf, png, jpg, jpeg </p>
 
-                                <img alt="Responsive image" class="img-fluid" id="output">
-                                <div id="file-error" class="error-message alert alert-danger d-none"></div>
+                                <input type="file" name="photo" class="dropify" data-default-file="{{URL::asset('dashboard/assets/img/photos/1.jpg')}}" data-height="200"  />
+                                <div id="photo-error" class="error-message alert alert-danger d-none"></div>
                             </div>
                         </div>
 
@@ -225,54 +235,49 @@
                 </div>
             </div>
         </div>
+    </div>
 
     @endsection
 
-    @section('scripts')
-        <!-- Internal Select2.min js -->
-        <script src="{{ asset('dashboard/assets/plugins/select2/js/select2.min.js') }}"></script>
+        @section('js')
+            <!--Internal  Datepicker js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+            <!--Internal  jquery.maskedinput js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+            <!--Internal  spectrum-colorpicker js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+            <!-- Internal Select2.min js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/select2/js/select2.min.js')}}"></script>
+            <!--Internal Ion.rangeSlider.min js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+            <!--Internal  jquery-simple-datetimepicker js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+            <!-- Ionicons js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+            <!--Internal  pickerjs js -->
+            <script src="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.js')}}"></script>
+            <!-- Internal form-elements js -->
+            <script src="{{URL::asset('dashboard/assets/js/form-elements.js')}}"></script>
 
+            <!--Internal Fileuploads js-->
+            <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+            <!--Internal Fancy uploader js-->
+            <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+            <!--Internal  Form-elements js-->
+            <script src="{{URL::asset('dashboard/assets/js/advanced-form-elements.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/js/select2.js')}}"></script>
+            <!--Internal Sumoselect js-->
+            <script src="{{URL::asset('dashboard/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
+            <!-- Internal TelephoneInput js-->
+            <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
+            <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 
-        <!--Internal Ion.rangeSlider.min js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-
-        <!--Internal  jquery-simple-datetimepicker js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
-
-        <!-- Ionicons js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
-
-        <!--Internal  pickerjs js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/pickerjs/picker.min.js"></script>
-
-
-
-        <!--Internal  Form-elements js-->
-        <script src="{{ asset('dashboard') }}/assets/js/advanced-form-elements.js"></script>
-
-        <!--Internal Sumoselect js-->
-        <script src="{{ asset('dashboard') }}/assets/plugins/sumoselect/jquery.sumoselect.js"></script>
-
-        <!-- Internal  js-->
-
-        <!--Internal  Datepicker js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
-
-
-        <!--Internal  jquery.maskedinput js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
-
-        <!--Internal  spectrum-colorpicker js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/spectrum-colorpicker/spectrum.js"></script>
-
-
-
-        <!--Internal Ion.rangeSlider.min js -->
-        <script src="{{ asset('dashboard') }}/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-
-
-
-        <script src="{{ asset('dashboard/assets/js/projects/edit-vacation.js') }}"></script>
+            <script src="{{ URL::asset('dashboard/assets/js/projects/edit-vacation.js') }}"></script>
 
 
     @endsection

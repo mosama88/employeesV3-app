@@ -35,7 +35,6 @@
                                 أضافة موظف
                             </a>
                         </div>
-                        @include('dashboard.departments.add')
                     </div>
 
                 </div>
@@ -50,7 +49,7 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example2">
+                        <table id="example" class="table key-buttons text-md-nowrap">
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>

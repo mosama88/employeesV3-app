@@ -58,22 +58,24 @@
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href=""><img alt=""
-                            src="{{ URL::asset('dashboard/assets/img/faces/6.jpg') }}"></a>
+                                                                src="{{ asset('dashboard') }}/assets/img/login-user.png"></a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user"><img alt=""
-                                        src="{{ URL::asset('dashboard/assets/img/faces/6.jpg') }}" class=""></div>
+                                                                src="{{ asset('dashboard') }}/assets/img/login-user.png" class=""></div>
                                 <div class="mr-3 my-auto">
-                                    <h6>{{ Auth::user()->name }}</h6><span>{{ Auth::user()->email }}</span>
+                                    <h6>{{ Auth::user()->name }}</h6>
+                                    <span>المستخدم</span>
+
                                 </div>
                             </div>
                         </div>
-                        <a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>Profile</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
-                        <a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-                        <a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
+                        {{--Profile--}}
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="far fa-user"></i>صفحتى</a>
+                        {{--Lock Screen--}}
+                        <a class="dropdown-item" href="{{ route('dashboard.lock-screen') }}"><i class="fas fa-lock"></i> قفل الشاشه</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                                 class="bx bx-log-out"></i>

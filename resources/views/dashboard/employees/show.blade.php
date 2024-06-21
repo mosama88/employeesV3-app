@@ -325,6 +325,8 @@
                     </div>
 
                     <div class="row mt-4 mb-4">
+                        <div class="card-body">
+
                         <div class="table-responsive">
                             <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
@@ -369,7 +371,6 @@
                                                     لا يوجد مرفقات
                                                 @endif
                                             </td>
-                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -382,12 +383,12 @@
         </div>
     </div>
     </div>
+    </div>
 
         <div class="main-navbar-backdrop"></div>
         @endsection
 
         @section('js')
-
 
             <!-- Internal Data tables -->
             <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>

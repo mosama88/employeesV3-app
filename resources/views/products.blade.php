@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('dashboard.layouts.master')
 @section('css')
 <!-- Internal Nice-select css  -->
-<link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
+<link href="{{URL::asset('dashboard/assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -206,7 +206,7 @@
 												<div class="badge bg-pink">New</div>
 												<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/01.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/01.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -231,7 +231,7 @@
 											<div class="d-flex product-sale">
 												<i class="mdi mdi-heart text-danger ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/02.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/02.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -257,7 +257,7 @@
 												<div class="badge bg-success">New</div>
 												<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/03.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/03.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -283,7 +283,7 @@
 												<div class="badge bg-success">New</div>
 												<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/06.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/06.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -308,7 +308,7 @@
 											<div class="d-flex product-sale">
 												<i class="mdi mdi-heart ml-auto wishlist text-danger"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/04.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/04.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart"></i>
 											</a>
 										</div>
@@ -333,7 +333,7 @@
 											<div class="d-flex product-sale">
 												<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/05.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/05.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -359,7 +359,7 @@
 												<div class="badge bg-purple">New</div>
 												<i class="mdi mdi-heart ml-auto wishlist text-danger"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/09.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/09.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -384,7 +384,7 @@
 											<div class="d-flex product-sale">
 												<i class="mdi mdi-heart-outline ml-auto wishlist"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/11.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/11.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -410,7 +410,7 @@
 												<div class="badge bg-info">New</div>
 												<i class="mdi mdi-heart ml-auto wishlist text-danger"></i>
 											</div>
-											<img class="w-100" src="{{URL::asset('assets/img/ecommerce/07.jpg')}}" alt="product-image">
+											<img class="w-100" src="{{URL::asset('dashboard/assets/img/ecommerce/07.jpg')}}" alt="product-image">
 											<a href="#" class="adtocart"> <i class="las la-shopping-cart "></i>
 											</a>
 										</div>
@@ -452,6 +452,6 @@
 @endsection
 @section('js')
 <!-- Internal Nice-select js-->
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>
+<script src="{{URL::asset('dashboard/assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
+<script src="{{URL::asset('dashboard/assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>
 @endsection

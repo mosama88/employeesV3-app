@@ -10,7 +10,7 @@ class LockScreenController extends Controller
 {
     public function showLockScreen()
     {
-        return view('dashboard.admin.lockscreen');
+        return view('dashboard.auth.lockscreen');
     }
 
     public function unlock(Request $request)

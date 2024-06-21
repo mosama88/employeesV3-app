@@ -17,7 +17,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('dashboard.admin.profile', [
+        return view('dashboard.auth.profile', [
             'user' => $request->user(),
         ]);
     }

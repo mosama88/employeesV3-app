@@ -38,7 +38,6 @@ class VacationController extends Controller
             DB::beginTransaction();
 
             $vacation = new Vacation();
-            $vacation->code_num = $request->code_num;
             $vacation->type = $request->type;
             $vacation->start = $request->start;
             $vacation->to = $request->to;
@@ -108,7 +107,6 @@ class VacationController extends Controller
     }
 
     $vacation = Vacation::findOrFail($id);
-    $vacation->code_num = $request->code_num;
     $vacation->type = $request->type;
     $vacation->start = $request->start;
     $vacation->to = $request->to;

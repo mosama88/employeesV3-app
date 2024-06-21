@@ -31,7 +31,7 @@ class VacationRequest extends FormRequest
             // 'to' => 'required|date|after:start +1 day',
             'notes' => 'nullable|string|max:1000',
             'employee_id' => 'required|exists:employees,id',
-            'file' => 'nullable|file|mimes:docx,doc,pdf,png,webp,jpg,jpeg',
+            'file' => 'nullable|file|mimes:docx,doc,pdf,png,jpg,jpeg',
             'status' => 'nullable',
             'int_ext' => 'nullable|string|in:internal,external',
             'department_id' => 'nullable|exists:departments,id',
@@ -77,7 +77,7 @@ class VacationRequest extends FormRequest
             // 'acting_employee_id.exists' => 'الموظف القائم بأعمالة المحدد غير موجود.',
             ########################################################
             'file.file'=>'يجب أن يكون حقل الصورة من نوع ملف.',
-            'file.mimes'=>'يجب أن يكون حقل الملف  من النوع:، doc,docs,pdf,png,webp,jpg,jpeg.',
+            'file.mimes'=>'يجب أن يكون حقل الملف  من النوع:، docx,doc,pdf,png,jpg,jpeg.',
         ];
     }
 
