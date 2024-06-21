@@ -1,5 +1,5 @@
 <!-- Title -->
-<title> Valex -  Premium dashboard ui bootstrap rwd admin html5 template </title>
+<title> برنامج شئون الموظفين | @yield('title') </title>
 <!-- Favicon -->
 <link rel="icon" href="{{URL::asset('dashboard/assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 <!-- Icons css -->
@@ -8,6 +8,10 @@
 <link href="{{URL::asset('dashboard/assets/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
 <!--  Sidebar css -->
 <link href="{{URL::asset('dashboard/assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
+
+{{--Fonts Arabic font-family: DroidKufi-Regular;--}}
+<link href="{{URL::asset('dashboard/assets/fonts_ar/stylesheet.css')}}" rel="stylesheet">
+
 <!-- Sidemenu css -->
 <link rel="stylesheet" href="{{URL::asset('dashboard/assets/css-rtl/sidemenu.css')}}">
 @yield('css')
