@@ -99,7 +99,7 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
 });
     Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
-
+Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
 //Route::group(['middleware' => ['role:super-admin|admin']], function() {
 //
 //    Route::resource('permissions', App\Http\Controllers\PermissionController::class);

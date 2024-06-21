@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table id="example" class="table key-buttons text-md-nowrap">
                             <tr>
                                 <th>أسم الصلاحية</th>
                                 <th width="280px">العمليات</th>

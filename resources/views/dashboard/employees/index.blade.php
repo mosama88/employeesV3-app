@@ -28,14 +28,14 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mg-b-0">جدول الموظفين</h4>
-
+@can('أضافة موظف')
                         <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                             <a class="btn btn-outline-primary btn-block" href="{{ route('dashboard.employees.create') }}">
                                 <i class="fas fa-plus-square"></i>
                                 أضافة موظف
                             </a>
                         </div>
-                    </div>
+      @endcan              </div>
 
                 </div>
                 {{-- Success Message --}}
@@ -95,19 +95,25 @@
 
                                     </td>
                                     <td>
+                                        @can('عرض الموظفين')
                                         {{-- Show --}}
                                         <a class="btn btn-outline-primary btn-sm"
                                            href="{{ route('dashboard.employees.show', $employee->id) }}"><i
                                                 class="fas fa-eye"></i></a>
+                                        @endcan
+                                        @can('تعديل الموظف')
                                         {{-- Edit --}}
                                         <a class="btn btn-outline-info btn-sm"
                                            href="{{ route('dashboard.employees.edit', $employee->id) }}"><i
                                                 class="fas fa-edit"></i></a>
+                                        @endcan
+                                        @can('حذف الموظف')
                                         {{-- Delete --}}
                                         <a class="modal-effect btn btn-outline-danger btn-sm"
                                            data-effect="effect-scale" data-toggle="modal"
                                            href="#delete{{ $employee->id }}">
                                             <i class="fas fa-trash-alt"></i></a>
+                                            @endcan
                                     </td>
                                     @include('dashboard.employees.delete')
                                 </tr>

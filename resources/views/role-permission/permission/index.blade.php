@@ -45,7 +45,7 @@
                     </div>
                     <div class="card-body">
 
-                        <table class="table table-bordered table-striped">
+                        <table id="example" class="table key-buttons text-md-nowrap">
                             <thead>
                             <tr>
                                 <th>#</th>
