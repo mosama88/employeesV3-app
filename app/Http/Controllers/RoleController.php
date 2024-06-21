@@ -42,7 +42,7 @@ class RoleController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('roles')->with('status','Role Created Successfully');
+        return redirect('roles')->with('status','إنشاء الصلاحية بنجاح');
     }
 
     public function edit(Role $role)
@@ -66,14 +66,14 @@ class RoleController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('roles')->with('status','Role Updated Successfully');
+        return redirect('roles')->with('status','تعديل الصلاحية بنجاح');
     }
 
     public function destroy($roleId)
     {
         $role = Role::find($roleId);
         $role->delete();
-        return redirect('roles')->with('status','Role Deleted Successfully');
+        return redirect('roles')->with('status','حذف الصلاحية بنجاح');
     }
 
     public function addPermissionToRole($roleId)
@@ -101,6 +101,6 @@ class RoleController extends Controller
         $role = Role::findOrFail($roleId);
         $role->syncPermissions($request->permission);
 
-        return redirect()->back()->with('status','Permissions added to role');
+        return redirect()->back()->with('status','تم إضافة الأذونات الى الصلاحيات');
     }
 }

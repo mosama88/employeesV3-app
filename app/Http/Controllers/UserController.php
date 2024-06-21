@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User created successfully with roles');
+        return redirect('/users')->with('status','تم إنشاء المستخدم بالصلاحيات بنجاح');
     }
 
     public function edit(User $user)
@@ -82,7 +82,7 @@ class UserController extends Controller
         $user->update($data);
         $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User Updated Successfully with roles');
+        return redirect('/users')->with('status','تم تعديل المستخدم بالصلاحيات بنجاح');
     }
 
     public function destroy($userId)
@@ -90,6 +90,6 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
         $user->delete();
 
-        return redirect('/users')->with('status','User Delete Successfully');
+        return redirect('/users')->with('status','حذف المستخدم بنجاح');
     }
 }
