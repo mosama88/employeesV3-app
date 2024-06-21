@@ -41,8 +41,8 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Role : {{ $role->name }}
-                            <a href="{{ url('roles') }}" class="btn btn-danger float-end">Back</a>
+                        <h4>الصلاحية : {{ $role->name }}
+                            <a href="{{ url('roles') }}" class="btn btn-danger float-end">رجوع</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -56,7 +56,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
 
-                                <label for="">Permissions</label>
+                                <label for="">الأذونات</label>
 
                                 <div class="row">
                                     @foreach ($permissions as $permission)
@@ -76,7 +76,7 @@
 
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">تأكيد</button>
                             </div>
                         </form>
                     </div>
