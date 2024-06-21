@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PermissionController;
 use Carbon\Carbon;
 use App\Models\Employee;
 use App\Models\JobGrade;
@@ -93,9 +94,9 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     // Our resource routes
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('/permissions', PermissionController::class);
 
 });
-
 
 //Route::group(['middleware' => ['role:super-admin|admin']], function() {
 //
