@@ -110,8 +110,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// All Pages $page
-Route::get('/{page}', [AdminController::class,'index']);
 
 
 

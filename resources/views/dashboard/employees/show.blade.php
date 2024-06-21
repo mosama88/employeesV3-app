@@ -343,9 +343,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $i=0; ?>
                                     @foreach ($vacations as $index => $vacation)
+                                <?php $i++; ?>
                                         <tr>
-                                            <th scope="row">{{ $vacation->code_num }}</th>
+                                            <th scope="row">{{ $i }}</th>
                                             <td>{{ $vacation->typeVaction() }}</td>
                                             <td>{{ $vacation->start }}</td>
                                             <td>{{ $vacation->to }}</td>
