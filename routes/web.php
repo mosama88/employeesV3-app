@@ -97,6 +97,8 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::resource('/permissions', PermissionController::class);
 
 });
+    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
 
 //Route::group(['middleware' => ['role:super-admin|admin']], function() {
 //
