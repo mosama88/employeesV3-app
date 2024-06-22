@@ -22,6 +22,8 @@ return new class extends Migration {
             $table->enum('status', ['pending', 'approve', 'reject'])->default('approve')->nullable();
             $table->foreignId('acting_employee_id')->nullable()->references('id')->on('employees')->cascadeOnDelete();
             $table->foreignId('department_id')->nullable()->references('id')->on('departments')->cascadeOnDelete();
+            $table->string('created_by', 999)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

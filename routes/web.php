@@ -80,6 +80,7 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::get('/vacation/print-emergancy/{id}', [VacationController::class, 'printEmergancy'])->name('vacation-print-emergancy');
     Route::get('/Vacation/settings', [VacationController::class, 'settingVacation'])->name('vacations.settingVacation');
     Route::get('/search-vacations', [VacationController::class, 'search'])->name('vacations.search');
+    Route::get('/restore/{id}', [VacationController::class, 'restore']);
     // Route::view('Vacation/add', 'dashboard.vacations.add')->name('vacations.add');
     ##################################### End Dashboard Vacation ########################
     ##################################### Start Dashboard Vacation ######################

@@ -9,6 +9,7 @@ use App\Models\Vacation;
 use App\Models\Department;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\VacationRequest;
@@ -50,6 +51,7 @@ class VacationController extends Controller
             $vacation->start = $request->start;
             $vacation->to = $request->to;
             $vacation->notes = $request->notes;
+            $vacation->created_by = Auth::user()->name;
             $vacation->status = 'approve';
 
             if ($request->type === 'mission') {
@@ -163,36 +165,40 @@ class VacationController extends Controller
     // Start Delete Vacation
     public function destroy(Request $request)
     {
+        // معالجة الحذف الفردي
         if ($request->page_id == 1) {
-
-            if ($request->filename) {
-                $this->Delete_attachment('upload_image', 'vacations/' . $request->filename, $request->id, $request->filename);
+            $vacation = Vacation::findOrFail($request->id);
+            if ($request->filename && $vacation->image) {
+                $this->Delete_attachment('upload_image', 'vacations/' . $vacation->image->filename, $request->id, $vacation->image->filename);
             }
-            {
-                Vacation::destroy($request->id);
-                return response()->json(['success' => 'Holiday deleted successfully']);
-
-            }
-//----------------------------------------------
+            $vacation->Delete();
+            return response()->json(['success' => 'Vacation deleted successfully']);
         }
-        // delete selector Vacation
-        $delete_select_id = explode(",", $request->delete_select_id);
-        foreach ($delete_select_id as $vacation_id) {
-            $vacation = Vacation::findorfail($vacation_id);
-            if ($vacation->image) {
-                $this->Delete_attachment('upload_image', 'vacations/' . $vacation->image->filename, $vacation_id, $vacation->image->filename);
-            }
-        }
-
-        Vacation::destroy($delete_select_id);
-        return response()->json(['success' => 'Holiday deleted successfully']);
 
     }
 
     // End Delete Vacation
+// Start Restore Delete Vacation
+    public function restore(Request $request)
+    {
+        // معالجة استعادة العنصر الفردي
+        if ($request->page_id == 1) {
+            $restoreData = Vacation::onlyTrashed()->findOrFail($request->id);
+            $restoreData->restore();
+            return response()->json(['success' => 'Vacation restored successfully']);
+        }
 
+        // معالجة استعادة العناصر المحددة
+        $delete_select_id = explode(",", $request->delete_select_id);
+        foreach ($delete_select_id as $vacation_id) {
+            $vacation = Vacation::onlyTrashed()->findOrFail($vacation_id);
+            $vacation->restore();
+        }
 
+        return response()->json(['success' => 'Vacations restored successfully']);
+    }
 
+// End Restore Delete Vacation
 
     public function print($id)
     {

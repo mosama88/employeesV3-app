@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class Vacation extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public $totalDays;
     protected $fillable = [
@@ -24,6 +27,7 @@ class Vacation extends Model
         'status',
         'acting_employee_id',
         'department_id',
+        'created_by',
         ];
 
 
