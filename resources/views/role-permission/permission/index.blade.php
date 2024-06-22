@@ -51,6 +51,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>الأسم</th>
+                                <th>الفئة</th>
                                 <th width="40%">العمليات</th>
                             </tr>
                             </thead>
@@ -59,6 +60,8 @@
                                 <tr>
                                     <td>{{ $permission->id }}</td>
                                     <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->category }}</td>
+
                                     <td>
                                         @can('update permission')
                                             <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-outline-info btn-sm">تعديل</a>

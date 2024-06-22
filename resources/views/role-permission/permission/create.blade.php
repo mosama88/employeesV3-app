@@ -56,6 +56,11 @@
                                 <label for="">الأسم</label>
                                 <input type="text" name="name" class="form-control" />
                             </div>
+
+                            <div class="mb-3">
+                                <label for="category">الفئة</label>
+                                <input type="text" class="form-control" name="category">
+                            </div>
                             {{-- Submit --}}
                             <div class="row row-xs wd-xl-80p">
                                 <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0"><button type="submit"

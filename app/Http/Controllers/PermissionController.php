@@ -33,15 +33,23 @@ class PermissionController extends Controller
                 'required',
                 'string',
                 'unique:permissions,name'
-            ]
+            ],
+            'category' => [
+                'required',
+                'string'
+            ],
+           
         ]);
 
         Permission::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'category' => $request->category,
+            'guard_name' => $request->guard_name
         ]);
 
-        return redirect('permissions')->with('status','تم إنشاء الأذونات بنجاح');
+        return redirect('permissions')->with('status', 'تم إنشاء الأذونات بنجاح');
     }
+
 
     public function edit(Permission $permission)
     {

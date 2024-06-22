@@ -1,12 +1,35 @@
 @extends('dashboard.layouts.master')
-@section('title', 'الأجازات')
-@section('current-page', 'الأجازات')
+@section('title', 'عرض أجازات الموظف')
 @section('css')
     <!-- Internal Data table css -->
-    <link href="{{ asset('dashboard') }}/assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="{{ asset('dashboard') }}/assets/plugins/datatable/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 @endsection
-
+@section('page-header')
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">
+                    عرض أجازات
+                    @php
+                        $employeeNames = $vacations
+                            ->flatMap(function ($vacation) {
+                                return $vacation->vacationEmployee->pluck('name');
+                            })
+                            ->unique()
+                            ->implode(', ');
+                    @endphp
+                    {{ $employeeNames }}
+                </h4>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
+@endsection
 @section('content')
     @include('dashboard.messages_alert')
     <div class="row row-sm">
@@ -85,85 +108,12 @@
             </div><!-- bd -->
         </div>
     </div>
+    </div><!-- bd -->
+    </div>
+    </div>
 
     <div class="main-navbar-backdrop"></div>
 
 @endsection
-
-@section('scripts')
-
-
-    <!-- Internal Data tables -->
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/jszip.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
-
-    <!--Internal  Datatable js -->
-    <script src="{{ asset('dashboard/assets/js/table-data.js') }}"></script>
-
-
-    <script>
-        // Delete
-        function deleteVacation(vacationId) {
-            let form = document.getElementById('deleteVacationForm' + vacationId);
-            let formData = new FormData(form);
-            let actionUrl = "{{ route('dashboard.vacations.destroy', '') }}/" + vacationId;
-
-            fetch(actionUrl, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json',
-                    },
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Hide the delete modal after successful deletion
-                        $('#delete' + vacationId).modal('hide');
-
-                        // Remove the deleted vacation row from the table
-                        let row = document.getElementById('vacationRow' + vacationId);
-                        if (row) {
-                            row.remove();
-                        }
-
-                        // Show the success message
-                        let successMessage = $('#successMessage');
-                        successMessage.removeClass('d-none');
-
-                        // Hide the success message slowly after 3 seconds
-                        setTimeout(() => {
-                            successMessage.fadeOut('slow', function() {
-                                successMessage.addClass('d-none')
-                                    .show(); // Ensure it is hidden and reset for next time
-                            });
-                        }, 3000); // Adjust the duration as needed
-                    } else {
-                        console.error('Error deleting vacation: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while deleting the vacation.');
-                });
-        }
-    </script>
-
-
+@section('js')
 @endsection

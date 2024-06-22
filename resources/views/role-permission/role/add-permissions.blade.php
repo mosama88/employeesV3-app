@@ -1,23 +1,10 @@
 @extends('dashboard.layouts.master')
 @section('title', 'أضافة أذونات`')
 @section('css')
-
-    <!-- Internal Select2 css -->
-    <link href="{{URL::asset('dashboard/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!--Internal  Datetimepicker-slider css -->
-    <link href="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
-    <!-- Internal Spectrum-colorpicker css -->
-    <link href="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
-    <!---Internal Fileupload css-->
-    <link href="{{URL::asset('dashboard/assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
-    <!---Internal Fancy uploader css-->
-    <link href="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
-    <!--Internal Sumoselect css-->
-    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/sumoselect/sumoselect-rtl.css')}}">
-    <!--Internal  TelephoneInput css-->
-    <link rel="stylesheet" href="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
+    <!--Internal  Font Awesome -->
+    <link href="{{URL::asset('dashboard/assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <!--Internal  treeview -->
+    <link href="{{URL::asset('dashboard/assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -50,7 +37,7 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-12">
                                 @error('permission')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -58,19 +45,346 @@
                                 <label for="">الأذونات</label>
 
                                 <div class="row">
-                                    @foreach ($permissions as $permission)
-                                        <div class="col-md-2">
-                                            <label>
-                                                <input
-                                                    type="checkbox"
-                                                    name="permission[]"
-                                                    value="{{ $permission->name }}"
-                                                    {{ in_array($permission->id, $rolePermissions) ? 'checked':'' }}
-                                                />
-                                                {{ $permission->name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
+                                    <ul id="treeview1" class="col-12">
+
+                                        <li>
+                                            <a href="#">Roles</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Roles') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">Permissions</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Permissions') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">Users</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Users') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">الأعدادات العامه</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'General Settings') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">العطلات الرسمية</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Holidays') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">الدرجات الوظيفية</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Job Grades') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">المسمى الوظيفي</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Job Titles') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">النيابات الأدارات</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Departments') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">الموظفين</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Employees') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">الأجازات</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Vacations Management') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">أضافة وحذف وتعديل</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'General') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">المرفقات</a>
+                                            <ul>
+
+                                                <ul>
+                                                    <li>
+                                                        @foreach ($permissions->where('category', 'Attachments') as $permission)
+                                                            <div class="col-md-12">
+                                                                <label>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="permission[]"
+                                                                        value="{{ $permission->name }}"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    />
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </li>
+                                                </ul>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#">User List</a>
+                                            <ul>
+
+                                                    <ul>
+                                                        <li>
+                                                            @foreach ($permissions->where('category', 'User List') as $permission)
+                                                                <div class="col-md-12">
+                                                                    <label>
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            name="permission[]"
+                                                                            value="{{ $permission->name }}"
+                                                                            {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                        />
+                                                                        {{ $permission->name }}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                        </li>
+                                                    </ul>
+
+                                    </ul>
+                                        </li>
+
+
+
+
+                                    </ul>
                                 </div>
 
                             </div>
@@ -100,42 +414,6 @@
 @endsection
 
 @section('js')
-    <!--Internal  Datepicker js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
-    <!--Internal  jquery.maskedinput js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
-    <!--Internal  spectrum-colorpicker js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
-    <!-- Internal Select2.min js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/select2/js/select2.min.js')}}"></script>
-    <!--Internal Ion.rangeSlider.min js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
-    <!-- Ionicons js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
-    <!--Internal  pickerjs js -->
-    <script src="{{URL::asset('dashboard/assets/plugins/pickerjs/picker.min.js')}}"></script>
-    <!-- Internal form-elements js -->
-    <script src="{{URL::asset('dashboard/assets/js/form-elements.js')}}"></script>
 
-    <!--Internal Fileuploads js-->
-    <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/fileupload.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/fileuploads/js/file-upload.js')}}"></script>
-    <!--Internal Fancy uploader js-->
-    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-    <!--Internal  Form-elements js-->
-    <script src="{{URL::asset('dashboard/assets/js/advanced-form-elements.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/js/select2.js')}}"></script>
-    <!--Internal Sumoselect js-->
-    <script src="{{URL::asset('dashboard/assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-    <!-- Internal TelephoneInput js-->
-    <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
-    <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
-    <script src="{{ asset('dashboard/assets/js/projects/add-users.js') }}"></script>
+    <script src="{{URL::asset('dashboard/assets/plugins/treeview/treeview.js')}}"></script>
 @endsection
