@@ -46,19 +46,19 @@ function Dropify(element, options) {
         allowedFormats: ['portrait', 'square', 'landscape'],
         allowedFileExtensions: ['*'],
         messages: {
-            'default': 'Drag and drop a file here or click',
-            'replace': 'Drag and drop or click to replace',
-            'remove':  'Remove',
-            'error':   'Ooops, something wrong happended.'
+            'default': 'قم بسحب وإسقاط الملف هنا أو انقر',
+            'replace': 'قم بالسحب والإسقاط أو انقر للاستبدال',
+            'remove':  'إزالة',
+            'error':   'عفوًا، حدث خطأ ما.'
         },
         error: {
-            'fileSize': 'The file size is too big ({{ value }} max).',
-            'minWidth': 'The image width is too small ({{ value }}}px min).',
-            'maxWidth': 'The image width is too big ({{ value }}}px max).',
-            'minHeight': 'The image height is too small ({{ value }}}px min).',
-            'maxHeight': 'The image height is too big ({{ value }}px max).',
-            'imageFormat': 'The image format is not allowed ({{ value }} only).',
-            'fileExtension': 'The file is not allowed ({{ value }} only).'
+            'fileSize': 'حجم الملف كبير جدًا ({{ value }} max).',
+            'minWidth': 'عرض الصورة صغير جدًا ({{ value }}}px min).',
+            'maxWidth': 'عرض الصورة كبير جدًا ({{ value }}}px max).',
+            'minHeight': 'ارتفاع الصورة صغير جدًا ({{ value }}}px min).',
+            'maxHeight': 'ارتفاع الصورة كبير جدًا ({{ value }}px max).',
+            'imageFormat': 'تنسيق الصورة غير مسموح به ({{ value }} only).',
+            'fileExtension': 'الملف غير مسموح به ({{ value }} only).'
         },
         tpl: {
             wrap:            '<div class="dropify-wrapper"></div>',
