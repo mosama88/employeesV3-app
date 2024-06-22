@@ -67,6 +67,7 @@
                                                     class="fe fe-edit"></i></a>
                                         </div>
                                     </div>
+                                    @can('بيانات الموظفين')
 
                                     <div class="main-contact-info-body p-4 ps">
                                         <div>
@@ -151,6 +152,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endcan
                                         <div class="ps__rail-x" style="left: 0px; top: 0px;">
                                             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                         </div>
@@ -188,6 +190,7 @@
                             </div>
                         </div>
                     </div>
+                    @can('عرض حساب الأجازات')
                     <div class="col-12 mx-auto">
                         <h4>حساب الاجازات</h4>
                         <div class="table-responsive mg-t-20">
@@ -323,11 +326,12 @@
                             </tbody>
                         </table>
                     </div>
-
+                    @endcan
                     <div class="row mt-4 mb-4">
                         <div class="card-body">
 
                         <div class="table-responsive">
+                    @can('عرض كل أجازات الموظف')
                             <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                     <tr>
@@ -377,6 +381,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @endcan
                         </div>
                     </div>
                 </div>

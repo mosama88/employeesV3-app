@@ -24,13 +24,13 @@
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">جدول العطلات</h4>
-
+                    @can('أضافة العطلات الرسميه')
                         <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled" data-toggle="modal" href="#modaldemo8">أضافة عطلة رسمية</a>
                     </div>
                     @include('dashboard.holidays.add')
                 </div>
-
+                @endcan
             </div>
             {{-- Success Message --}}
             <div id="successMessage" class="col-10 alert alert-solid-success d-none my-2 mb-2 mx-auto" role="alert">
@@ -66,12 +66,14 @@
                                             {{ $holiday->calculateTotalDaysExcludingFridays() }}
                                         </td>
                                         <td>
+                                            @can('تعديل العطلات الرسميه')
                                             {{-- Edit --}}
                                             <a class="modal-effect btn btn-outline-info btn-sm" data-effect="effect-scale"
                                                data-toggle="modal" href="#edit{{ $holiday->id }}"><i
                                                     class="fas fa-edit"></i></a>
                                             @include('dashboard.holidays.edit')
-
+                                            @endcan
+                                                @can('حذف العطلات الرسميه')
                                             {{--Delete --}}
                                              <a id="holidayRow{{ $holiday->id }}"
                                                 class="modal-effect btn btn-outline-danger btn-sm"
@@ -79,7 +81,7 @@
                                                 href="#delete{{ $holiday->id }}">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
-
+                                                @endcan
                                             <!-- End Modal effects-->
                                             <div class="modal" id="delete{{ $holiday->id }}">
                                                 <!-- Modal content -->

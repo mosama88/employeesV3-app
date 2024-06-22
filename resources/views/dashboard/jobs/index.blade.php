@@ -24,13 +24,13 @@
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">جدول الوظيفه</h4>
-
+                    @can('أضافة المسمى الوظيفى')
                     <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled" data-toggle="modal" href="#modaldemo8">أضافة وظيفه</a>
                     </div>
                     @include('dashboard.jobgrades.add')
                 </div>
-
+                @endcan
             </div>
             {{-- Success Message --}}
             <div id="successMessage" class="col-10 alert alert-solid-success d-none my-2 mb-2 mx-auto" role="alert">
@@ -57,18 +57,20 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $job->name }}</td>
                                 <td>
+                                    @can('تعديل المسمى الوظيفى')
                                     {{-- Edit --}}
                                     <a class="modal-effect btn btn-outline-info btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#edit{{ $job->id }}"><i
                                             class="fas fa-edit"></i></a>
                                     @include('dashboard.jobs.edit')
-
+                                    @endcan
+                                        @can('حذف المسمى الوظيفى')
                                     {{-- Delete --}}
                                     <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#delete{{ $job->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-
+                                        @endcan
                                     <!-- End Modal effects-->
                                     <div class="modal" id="delete{{ $job->id }}">
                                         <!-- Modal content -->

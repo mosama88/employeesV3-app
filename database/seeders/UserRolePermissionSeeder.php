@@ -43,10 +43,15 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'تعديل الموظف']);
         Permission::create(['name' =>'حذف الموظف' ]);
         Permission::create(['name' =>'عرض الموظفين']);
+        Permission::create(['name' =>'بيانات الموظفين']);
+        Permission::create(['name' =>'عرض حساب الأجازات']);
+        Permission::create(['name' =>'عرض كل أجازات الموظف']);
         Permission::create(['name' => 'الاجازات']);
         Permission::create(['name' => 'أضافة أجازه']);
         Permission::create(['name' => 'تعديل الاجازه']);
         Permission::create(['name' =>'حذف الاجازه']);
+        Permission::create(['name' =>'طباعة الاجازه']);
+        Permission::create(['name' => 'طباعة الاجازه العارضه']);
         Permission::create(['name' =>'الاعدادت العامه' ]);
         Permission::create(['name' => 'العطلات الرسميه']);
         Permission::create(['name' => 'أضافة العطلات الرسميه']);

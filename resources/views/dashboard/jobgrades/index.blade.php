@@ -24,13 +24,13 @@
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">جدول الدرجات الوظيفية</h4>
-
+                    @can('أضافة الدرجات الوظيفية')
                     <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled" data-toggle="modal" href="#modaldemo8">أضافة درجه وظيفية</a>
                     </div>
                     @include('dashboard.jobgrades.add')
                 </div>
-
+                @endcan
             </div>
             {{-- Success Message --}}
             <div id="successMessage" class="col-10 alert alert-solid-success d-none my-2 mb-2 mx-auto" role="alert">
@@ -57,18 +57,20 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $jobgrade->name }}</td>
                                 <td>
+                                    @can('تعديل الدرجات الوظيفية')
                                     {{-- Edit --}}
                                     <a class="modal-effect btn btn-outline-info btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#edit{{ $jobgrade->id }}"><i
                                             class="fas fa-edit"></i></a>
                                     @include('dashboard.jobgrades.edit')
-
+                                    @endcan
+                                        @can('حذف الدرجات الوظيفية')
                                     {{-- Delete --}}
                                     <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#delete{{ $jobgrade->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-
+                                        @endcan
                                     <!-- End Modal effects-->
                                     <div class="modal" id="delete{{ $jobgrade->id }}">
                                         <!-- Modal content -->
@@ -84,6 +86,8 @@
                 </div><!-- bd -->
             </div><!-- bd -->
         </div><!-- bd -->
+    </div>
+    </div><!-- bd -->
     </div>
 
 

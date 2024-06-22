@@ -153,11 +153,14 @@
                                     </td>
                                     <td>{{ $vacation->notes }}</td>
                                     <td>
+                                        @can('تعديل الاجازه')
                                         <!-- Edit -->
                                         <a class="btn btn-outline-info btn-sm"
                                            href="{{ route('dashboard.vacations.edit', $vacation->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
+                                        @endcan
+                                            @can('طباعة الاجازه')
                                         <!-- Print -->
                                         @if ($vacation->status == 'approve')
                                             @if ($vacation->type == 'regular')
@@ -166,6 +169,8 @@
                                                     <i class="fas fa-print"></i>
                                                 </a>
                                             @endif
+                                                @endcan
+                                                @can('طباعة الاجازه العارضه')
                                             @if ($vacation->type == 'emergency')
                                                 <a class="btn btn-outline-primary btn-sm"
                                                    href="{{ route('dashboard.vacation-print-emergancy', $vacation->id) }}">
@@ -173,12 +178,15 @@
                                                 </a>
                                             @endif
                                         @endif
+                                            @endcan
+                                            @can('حذف الاجازه')
                                         <!-- Delete -->
                                         <a class="modal-effect btn btn-outline-danger btn-sm"
                                            data-effect="effect-scale" data-toggle="modal"
                                            href="#delete{{ $vacation->id }}">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
+                                    @endcan
                                     </td>
                                         @include('dashboard.vacations.delete', [
                                             'vacation' => $vacation,

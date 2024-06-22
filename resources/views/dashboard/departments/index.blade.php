@@ -30,13 +30,13 @@
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">جدول النيابات / الأدارات</h4>
-
+                    @can('أضافة النيابات و الأدارات')
                     <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled" data-toggle="modal" href="#modaldemo8">أضافة نيابة / أدارة</a>
                     </div>
                     @include('dashboard.departments.add')
                 </div>
-
+                @endcan
             </div>
             {{-- Success Message --}}
             <div id="successMessage" class="col-10 alert alert-solid-success d-none my-2 mb-2 mx-auto" role="alert">
@@ -53,7 +53,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>اسم الدرجه الوظيفية</th>
+                            <th>اسم النيابة /  الأداره</th>
                             <th>العمليات</th>
                         </tr>
                         </thead>
@@ -63,18 +63,21 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $department->branch }}</td>
                                 <td>
+                                    @can('تعديل النيابات و الأدارات')
                                     {{-- Edit --}}
                                     <a class="modal-effect btn btn-outline-info btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#edit{{ $department->id }}"><i
                                             class="fas fa-edit"></i></a>
                                     @include('dashboard.departments.edit')
-
+                                    @endcan
+                                        @can('حذف النيابات و الأدارات')
                                     {{-- Delete --}}
                                     <a class="modal-effect btn btn-outline-danger btn-sm" data-effect="effect-scale"
                                        data-toggle="modal" href="#delete{{ $department->id }}">
                                         <i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 @include('dashboard.departments.delete')
+                                @endcan
                             </tr>
                         @endforeach
                         </tbody>
@@ -82,6 +85,8 @@
                 </div><!-- bd -->
             </div><!-- bd -->
         </div><!-- bd -->
+    </div>
+    </div><!-- bd -->
     </div>
 
 

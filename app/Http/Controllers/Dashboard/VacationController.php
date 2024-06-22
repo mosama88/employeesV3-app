@@ -24,6 +24,8 @@ class VacationController extends Controller
         $this->middleware('permission:أضافة أجازه', ['only' => ['create','store']]);
         $this->middleware('permission:تعديل الاجازه', ['only' => ['update','edit']]);
         $this->middleware('permission:حذف الاجازه', ['only' => ['destroy']]);
+        $this->middleware('permission:طباعة الاجازه', ['only' => ['print']]);
+        $this->middleware('permission:طباعة الاجازه العارضه', ['only' => ['printEmergancy']]);
     }
 
     public function index()
