@@ -12,9 +12,9 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+
+
+
     public function create(): View
     {
         return view('dashboard.auth.login');
@@ -45,4 +45,15 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        return [
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => 'active',
+        ];
+    }
+
+
 }

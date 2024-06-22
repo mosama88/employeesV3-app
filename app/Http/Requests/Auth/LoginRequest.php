@@ -57,12 +57,24 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => trans('ليس لديك حساب فى قاعدة البيانات'),
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
+###################################################################
+        $credentials = $this->only('email', 'password');
+
+        // إضافة شرط حالة المستخدم النشطة
+        $credentials['status'] = 'active';
+
+        if (!Auth::attempt($credentials, $this->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'email' => __('ليس لديك حساب فى قاعدة البيانات'),
+            ]);
+        }
     }
+
 
     /**
      * Ensure the login request is not rate limited.
@@ -94,4 +106,7 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
     }
+
+
+
 }

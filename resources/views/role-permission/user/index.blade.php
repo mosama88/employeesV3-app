@@ -52,6 +52,7 @@
                                 <th>أسم المستخدم</th>
                                 <th>البريد الالكترونى</th>
                                 <th>الصلاحيات</th>
+                                <th>حالة الحساب</th>
                                 <th>العمليات</th>
                             </tr>
                             </thead>
@@ -66,6 +67,17 @@
                                             @foreach ($user->getRoleNames() as $rolename)
                                                 <label class="badge bg-primary text-white mx-1">{{ $rolename }}</label>
                                             @endforeach
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->status == 'active')
+                                            <span class="label text-success d-flex">
+                                                <div class="dot-label bg-success ml-1"></div>{{ __('نشط') }}
+                                            </span>
+                                        @else
+                                            <span class="label text-danger d-flex">
+                                                <div class="dot-label bg-danger ml-1"></div>{{ __('غير نشط') }}
+                                            </span>
                                         @endif
                                     </td>
                                     <td>

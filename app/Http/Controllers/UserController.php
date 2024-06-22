@@ -35,7 +35,8 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:20',
-            'roles' => 'required'
+            'roles' => 'required',
+            'status' => 'nullable|in:active,inactive',
         ]);
 
         $user = User::create([
@@ -65,12 +66,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'password' => 'nullable|string|min:8|max:20',
-            'roles' => 'required'
+            'roles' => 'required',
+            'status' => 'nullable|in:active,inactive',
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+            'status' => $request->status,
         ];
 
         if(!empty($request->password)){

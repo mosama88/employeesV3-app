@@ -58,15 +58,18 @@
                                 <input type="text" name="name" value="{{ $user->name }}" class="form-control" />
                                 @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="">البريد الالكترونى</label>
                                 <input type="text" name="email" readonly value="{{ $user->email }}" class="form-control" />
                             </div>
+
                             <div class="mb-3">
                                 <label for="">كلمة المرور</label>
-                                <input type="text" name="password" class="form-control" />
+                                <input type="password" name="password" class="form-control" />
                                 @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="">الصلاحيات</label>
                                 <select name="roles[]" class="form-control" multiple>
@@ -82,6 +85,16 @@
                                 </select>
                                 @error('roles') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
+                            <div class="mb-3">
+                                <label for="status">حالة الحساب</label>
+                                <select name="status" class="form-control select">
+                                    <option disabled {{ is_null($user->status) ? 'selected' : '' }}>افتح قائمة التحديد</option>
+                                    <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>نشط</option>
+                                    <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>غير نشط</option>
+                                </select>
+                            </div>
+
                             {{-- Submit --}}
                             <div class="row row-xs wd-xl-80p">
                                 <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0"><button type="submit"
@@ -98,6 +111,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
 

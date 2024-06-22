@@ -62,7 +62,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">كلمة المرور</label>
-                                <input type="text" name="password" class="form-control" />
+                                <input type="password" name="password" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label for="">الصلاحيات</label>
@@ -73,6 +73,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             {{-- Submit --}}
                             <div class="row row-xs wd-xl-80p">
                                 <div class="col-sm-6 col-md-3 mg-t-10 mg-md-t-0"><button type="submit"
@@ -90,7 +91,8 @@
             </div>
         </div>
     </div>
-
+    </div>
+    </div>
 @endsection
 
     @section('js')
