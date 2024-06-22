@@ -3,7 +3,8 @@
     <!-- Sidemenu-respoansive-tabs css -->
     <link href="{{URL::asset('dashboard/assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
 @endsection
-@section('content')
+@section('title','صفحة الدخول')
+    @section('content')
     <div class="container-fluid">
         <div class="row no-gutter">
             <!-- The content half -->

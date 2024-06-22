@@ -29,6 +29,7 @@
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mg-b-0">جدول الموظفين</h4>
 
+                        @can('أضافة أجازه')
                         <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                             <a class="btn btn-outline-primary btn-block" href="{{ route('dashboard.vacations.create') }}">
                                 <i class="fas fa-plus-square"></i>
@@ -36,7 +37,7 @@
                             </a>
                         </div>
                     </div>
-
+                    @endcan
                 </div>
                 {{-- Success Message --}}
                 <div id="successMessage" class="col-10 alert alert-solid-success d-none my-2 mb-2 mx-auto" role="alert">
