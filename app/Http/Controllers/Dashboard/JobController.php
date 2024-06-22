@@ -9,9 +9,17 @@ use App\Http\Requests\Dashboard\JobRequest;
 
 class JobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
+    public function __construct()
+    {
+        $this->middleware('permission:المسمى الوظيفى', ['only' => ['index']]);
+        $this->middleware('permission:أضافة المسمى الوظيفى', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل المسمى الوظيفى', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف المسمى الوظيفى', ['only' => ['destroy']]);
+    }
+
+
     public function index()
     {
         $jobs = Job::get();
@@ -70,7 +78,7 @@ class JobController extends Controller
             // Return a JSON response indicating failure
             return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء حذف الوظيفه']);
         }
-    
+
     }
 
     public function destroy(Request $request)

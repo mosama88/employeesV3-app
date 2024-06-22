@@ -11,9 +11,18 @@ use App\Http\Requests\Dashboard\JobGradeRequest;
 
 class JobGradeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
+    public function __construct()
+    {
+        $this->middleware('permission:الدرجات الوظيفية', ['only' => ['index']]);
+        $this->middleware('permission:أضافة الدرجات الوظيفية', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل الدرجات الوظيفية', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف الدرجات الوظيفية', ['only' => ['destroy']]);
+    }
+
+
+
     public function index()
     {
         $jobgrades = JobGrade::orderBy('created_at', 'desc')->get();
@@ -74,7 +83,7 @@ class JobGradeController extends Controller
             // Return a JSON response indicating failure
             return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء حذف الدرجه الوظيفية']);
         }
-    
+
     }
 
     public function destroy(Request $request)

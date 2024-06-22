@@ -38,27 +38,39 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'delete product']);
 
 
+        Permission::create(['name' =>'الموظفين']);
+        Permission::create(['name' =>'أضافة موظف' ]);
+        Permission::create(['name' => 'تعديل الموظف']);
+        Permission::create(['name' =>'حذف الموظف' ]);
+        Permission::create(['name' =>'عرض الموظفين']);
+        Permission::create(['name' => 'الاجازات']);
+        Permission::create(['name' => 'أضافة أجازه']);
+        Permission::create(['name' => 'تعديل الاجازه']);
+        Permission::create(['name' =>'حذف الاجازه']);
+        Permission::create(['name' =>'الاعدادت العامه' ]);
+        Permission::create(['name' => 'العطلات الرسميه']);
+        Permission::create(['name' => 'أضافة العطلات الرسميه']);
+        Permission::create(['name' => 'تعديل العطلات الرسميه']);
+        Permission::create(['name' => 'حذف العطلات الرسميه']);
+        Permission::create(['name' => 'الدرجات الوظيفية']);
+        Permission::create(['name' => 'أضافة الدرجات الوظيفية']);
+        Permission::create(['name' => 'تعديل الدرجات الوظيفية']);
+        Permission::create(['name' => 'حذف الدرجات الوظيفية']);
+        Permission::create(['name' => 'المسمى الوظيفى']);
+        Permission::create(['name' => 'أضافة المسمى الوظيفى']);
+        Permission::create(['name' => 'تعديل المسمى الوظيفى']);
+        Permission::create(['name' => 'حذف المسمى الوظيفى']);
+        Permission::create(['name' => 'النيابات و الأدارات']);
+        Permission::create(['name' => 'أضافة النيابات و الأدارات']);
+        Permission::create(['name' => 'تعديل النيابات و الأدارات']);
+        Permission::create(['name' => 'حذف النيابات و الأدارات']);
         Permission::create(['name' => 'اضافه']);
         Permission::create(['name' => 'حذف']);
         Permission::create(['name' => 'تعديل']);
-        Permission::create(['name' =>'الاعدادت العامه' ]);
-        Permission::create(['name' => 'تحميل المرفق']);
         Permission::create(['name' => 'المرفقات']);
-        Permission::create(['name' =>'عرض الموظفين']);
-        Permission::create(['name' => 'تعديل الاجازه']);
-        Permission::create(['name' =>'حذف الاجازه']);
-        Permission::create(['name' => 'أضافة أجازه']);
-        Permission::create(['name' => 'الاجازات']);
+        Permission::create(['name' => 'تحميل المرفق']);
         Permission::create(['name' => 'قائمة المستخدمين']);
         Permission::create(['name' => 'المستخدمين']);
-        Permission::create(['name' => 'تعديل الموظف']);
-        Permission::create(['name' =>'حذف الموظف' ]);
-        Permission::create(['name' =>'أضافة موظف' ]);
-        Permission::create(['name' =>'الموظفين']);
-        Permission::create(['name' => 'العطلات الرسميه']);
-        Permission::create(['name' => 'النيابات و الأدارات']);
-        Permission::create(['name' => 'المسمى الوظيفى']);
-        Permission::create(['name' => 'الدرجات الوظيفية']);
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin

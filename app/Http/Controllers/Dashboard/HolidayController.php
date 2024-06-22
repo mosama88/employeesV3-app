@@ -11,6 +11,15 @@ use App\Http\Requests\Dashboard\HolidayRequest;
 class HolidayController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('permission:العطلات الرسميه', ['only' => ['index']]);
+        $this->middleware('permission:أضافة العطلات الرسميه', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل العطلات الرسميه', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف العطلات الرسميه', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $holidays = Holiday::orderBy('created_at', 'desc')->get();

@@ -17,6 +17,14 @@ class VacationController extends Controller
 {
     use UploadTrait;
 
+    public function __construct()
+    {
+        $this->middleware('permission:الاجازات', ['only' => ['index']]);
+        $this->middleware('permission:أضافة أجازه', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل الاجازه', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف الاجازه', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $vacations = Vacation::orderBy('created_at', 'desc')->with('vacationEmployee')->paginate(10);
@@ -206,49 +214,6 @@ class VacationController extends Controller
 
         return view('dashboard.vacations.print-emergency', compact('vacation','vac','employee','department'));
     }
-
-
-
-
-    // public function search(Request $request)
-    // {
-    //     $searchTerm = $request->input('search');
-    //     $type = $request->input('type');
-    //     $employeeId = $request->input('employee_id');
-
-    //     $query = Vacation::query();
-
-    //     if ($searchTerm) {
-    //         $query->where('type', 'like', '%' . $searchTerm . '%')
-    //             ->orWhereHas('vacationEmployee', function ($q) use ($searchTerm) {
-    //                 $q->where('name', 'like', '%' . $searchTerm . '%');
-    //             });
-    //     }
-
-    //     if ($type) {
-    //         $query->where('type', $type);
-    //     }
-
-    //     if ($employeeId) {
-    //         $query->whereHas('vacationEmployee', function ($q) use ($employeeId) {
-    //             $q->where('employees.id', $employeeId); // Specify the table name
-    //         });
-    //     }
-
-    //     $vacations = $query->orderBy('created_at', 'desc')->paginate(5);
-
-    //     $employees = Employee::all();
-
-    //     return view('dashboard.vacations.searchvacation', [
-    //         'vacations' => $vacations,
-    //         'search' => $searchTerm,
-    //         'type' => $type,
-    //         'employee_id' => $employeeId,
-    //         'employees' => $employees,
-    //     ]);
-    // }
-
-
 
 
     public function search(Request $request)

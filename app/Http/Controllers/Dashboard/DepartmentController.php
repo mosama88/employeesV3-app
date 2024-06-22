@@ -11,6 +11,16 @@ use App\Http\Requests\Dashboard\DepartmentRequest;
 class DepartmentController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('permission:النيابات و الأدارات', ['only' => ['index']]);
+        $this->middleware('permission:أضافة النيابات و الأدارات', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل النيابات و الأدارات', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف النيابات و الأدارات', ['only' => ['destroy']]);
+    }
+
+
     public function index()
     {
         $departments = Department::orderBy('created_at', 'desc')->paginate(10);

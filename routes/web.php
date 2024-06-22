@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     ##################################### End Dashboard Department #########################
     ##################################### Start Dashboard Employee ######################
     Route::resource('/employees', EmployeeController::class);
-    Route::get('/employees/show/vacation', [EmployeeController::class,'employeeshowvacation'])->name('show.vacation');
+//    Route::get('/employees/show/vacation', [EmployeeController::class,'employeeshowvacation'])->name('show.vacation');
     Route::post('/calculate-vacation-days', [EmployeeController::class, 'calculateVacationDays'])->name('calculateVacationDays');
     ##################################### End Dashboard Employee ########################
     ##################################### Start Dashboard Vacation ######################

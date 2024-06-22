@@ -18,6 +18,17 @@ class EmployeeController extends Controller
     use UploadTrait;
 
 
+    public function __construct()
+    {
+        $this->middleware('permission:الموظفين', ['only' => ['index']]);
+        $this->middleware('permission:أضافة موظف', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل الموظف', ['only' => ['update','edit']]);
+        $this->middleware('permission:حذف الموظف', ['only' => ['destroy']]);
+        $this->middleware('permission:عرض الموظفين', ['only' => ['show']]);
+    }
+
+
+
 
     public function index()
     {
@@ -223,11 +234,11 @@ public function store(EmployeeRequest $request)
     }
 
 
-    public function employeeshowvacation()
-    {
-        $employees = Employee::orderBy('created_at', 'desc')->with('employeeAppointments')->get();
-        return view('dashboard.employees.show-vacation-employee', compact('employees'));
-    }
+//    public function employeeshowvacation()
+//    {
+//        $employees = Employee::orderBy('created_at', 'desc')->with('employeeAppointments')->get();
+//        return view('dashboard.employees.show-vacation-employee', compact('employees'));
+//    }
 
 
 
