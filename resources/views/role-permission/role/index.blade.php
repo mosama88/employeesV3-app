@@ -37,12 +37,12 @@
 
             <div class="card mt-3">
                 <div class="card-header">
-                    <h4>
-                        الصلاحيات
-                        @can('create role')
-                            <a href="{{ url('roles/create') }}" class="btn btn-primary float-end">أضافة صلاحية</a>
-                        @endcan
-                    </h4>
+                    <h4>الصلاحيات</h4>
+                    @can('create role')
+                        <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
+                            <a href="{{ url('roles/create') }}" class="btn btn-outline-primary btn-block">أضافة صلاحية</a>
+                        </div>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -61,23 +61,22 @@
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    <a href="{{ url('roles/'.$role->id.'/give-permissions') }}" class="btn btn-warning">
+                                    <a href="{{ url('roles/'.$role->id.'/give-permissions') }}" class="btn btn-outline-warning btn-sm">
                                         إضافة / تعديل أذونات الصلاحية
                                     </a>
 
                                     @can('update role')
-                                        <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-success">
+                                        <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-outline-info btn-sm">
                                             تعديل
                                         </a>
                                     @endcan
 
                                     @can('delete role')
-                                        <a href="{{ url('roles/'.$role->id.'/delete') }}" class="btn btn-danger mx-2">
-                                            حذف
-                                        </a>
+                                        <a  href="#delete{{ $role->id }}" data-effect="effect-scale" data-toggle="modal" class="btn btn-outline-danger btn-sm">حذف</a>
                                     @endcan
                                 </td>
                             </tr>
+                                    @include('role-permission.role.delete')
                         @endforeach
                         </tbody>
                     </table>

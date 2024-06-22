@@ -23,19 +23,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->delete();
-        DB::table('users')->insert([
-            'name' => 'محمد أسامه',
-            'email' => 'mosama@dt.com',
-            'password' => Hash::make('@Osama88'), // Hashing the password using bcrypt
-        ],);
-
-
-        DB::table('users')->insert([
-            'name' => 'هبة الله سمير',
-            'email' => 'heba@dt.com',
-            'password' => Hash::make('123456789'), // Hashing the password using bcrypt
-        ],);
     }
 
     /**

@@ -36,11 +36,12 @@
                 @endif
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>المستخدمين
-                            @can('create user')
-                                <a href="{{ url('users/create') }}" class="btn btn-primary float-end">أضافة مستخدم</a>
-                            @endcan
-                        </h4>
+                        <h4>المستخدمين</h4>
+                        @can('create user')
+                        <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
+                            <a href="{{ url('users/create') }}" class="btn btn-outline-primary btn-block">أضافة مستخدم</a>
+                        </div>
+                        @endcan
                     </div>
                     <div class="card-body">
 
@@ -63,19 +64,20 @@
                                     <td>
                                         @if (!empty($user->getRoleNames()))
                                             @foreach ($user->getRoleNames() as $rolename)
-                                                <label class="badge bg-primary mx-1">{{ $rolename }}</label>
+                                                <label class="badge bg-primary text-white mx-1">{{ $rolename }}</label>
                                             @endforeach
                                         @endif
                                     </td>
                                     <td>
                                         @can('update user')
-                                            <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-success">تعديل</a>
+                                            <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-outline-info btn-sm">تعديل</a>
                                         @endcan
 
                                         @can('delete user')
-                                            <a href="{{ url('users/'.$user->id.'/delete') }}" class="btn btn-danger mx-2">حذف</a>
+                                            <a  href="#delete{{ $user->id }}" data-effect="effect-scale" data-toggle="modal" class="btn btn-outline-danger btn-sm">حذف</a>
                                         @endcan
                                     </td>
+                                    @include('role-permission.user.delete')
                                 </tr>
                             @endforeach
                             </tbody>
@@ -86,7 +88,8 @@
             </div>
         </div>
     </div>
-
+    </div>
+    </div>
     <div class="main-navbar-backdrop"></div>
 
 @endsection

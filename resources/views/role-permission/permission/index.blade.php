@@ -37,11 +37,12 @@
 
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>الأذونات
-                            @can('create permission')
-                                <a href="{{ url('permissions/create') }}" class="btn btn-primary float-end">أضافة أذونات جديده</a>
-                            @endcan
-                        </h4>
+                        <h4>الأذونات</h4>
+                        @can('create permission')
+                        <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
+                            <a href="{{ url('permissions/create') }}" class="btn btn-outline-primary btn-block">أضافة أذونات جديده</a>
+                        </div>
+                        @endcan
                     </div>
                     <div class="card-body">
 
@@ -60,14 +61,15 @@
                                     <td>{{ $permission->name }}</td>
                                     <td>
                                         @can('update permission')
-                                            <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-success">تعديل</a>
+                                            <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-outline-info btn-sm">تعديل</a>
                                         @endcan
 
                                         @can('delete permission')
-                                            <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-danger mx-2">حذف</a>
+                                                <a  href="#delete{{ $permission->id }}" data-effect="effect-scale" data-toggle="modal" class="btn btn-outline-danger btn-sm">حذف</a>
                                         @endcan
                                     </td>
                                 </tr>
+                                @include('role-permission.permission.delete')
                             @endforeach
                             </tbody>
                         </table>
