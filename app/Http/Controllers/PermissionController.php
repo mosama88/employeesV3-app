@@ -38,7 +38,7 @@ class PermissionController extends Controller
                 'required',
                 'string'
             ],
-           
+
         ]);
 
         Permission::create([

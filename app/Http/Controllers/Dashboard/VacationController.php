@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
-
-use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Employee;
-use App\Models\JobGrade;
 use App\Models\Vacation;
 use App\Models\Department;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Notifications\AddVacation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+// use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\Dashboard\VacationRequest;
 
 class VacationController extends Controller
@@ -75,6 +76,15 @@ class VacationController extends Controller
 
             // Upload img
             $this->verifyAndStoreFile($request, 'photo', 'vacations/', 'upload_image', $vacation->id, 'App\Models\Vacation');
+
+
+                      //Notifications
+  // Notifications: ارسال الإشعار للمستخدمين الذين لديهم دور "super-admin"
+  $superAdmins = User::whereHas('roles', function ($query) {
+    $query->where('name', 'super-admin');
+})->get();            $vacationNotify = Vacation::latest()->first();
+            Notification::send($superAdmins, new AddVacation($vacationNotify));
+
 
             DB::commit();
             return response()->json(['success' => 'تم أضافة أجازة الموظف بنجاح']);
@@ -269,6 +279,14 @@ class VacationController extends Controller
             'to' => $to,
         ]);
     }
+
+    public function vacationDetalis($id)
+{
+
+    $vacation = Vacation::findorfail($id);
+
+    return view('dashboard.vacations.show-vacation-employee', compact('vacation'));
+}
 
 }
 

@@ -71,7 +71,6 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     ##################################### End Dashboard Department #########################
     ##################################### Start Dashboard Employee ######################
     Route::resource('/employees', EmployeeController::class);
-//    Route::get('/employees/show/vacation', [EmployeeController::class,'employeeshowvacation'])->name('show.vacation');
     Route::post('/calculate-vacation-days', [EmployeeController::class, 'calculateVacationDays'])->name('calculateVacationDays');
     ##################################### End Dashboard Employee ########################
     ##################################### Start Dashboard Vacation ######################
@@ -81,6 +80,7 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::get('/Vacation/settings', [VacationController::class, 'settingVacation'])->name('vacations.settingVacation');
     Route::get('/search-vacations', [VacationController::class, 'search'])->name('vacations.search');
     Route::get('/restore/{id}', [VacationController::class, 'restore']);
+    Route::get('/vacations/Detalis/{id}', [VacationController::class,'vacationDetalis'])->name('vacationDetalis');
     // Route::view('Vacation/add', 'dashboard.vacations.add')->name('vacations.add');
     ##################################### End Dashboard Vacation ########################
     ##################################### Start Dashboard Vacation ######################

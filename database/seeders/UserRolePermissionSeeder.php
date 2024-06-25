@@ -74,6 +74,7 @@ class UserRolePermissionSeeder extends Seeder
             ['name' => 'اضافه', 'category' => 'General'],
             ['name' => 'حذف', 'category' => 'General'],
             ['name' => 'تعديل', 'category' => 'General'],
+            ['name' => 'الاشعارات', 'category' => 'General'],
 
             ['name' => 'المرفقات', 'category' => 'Attachments'],
             ['name' => 'تحميل المرفق', 'category' => 'Attachments'],

@@ -234,15 +234,5 @@ public function store(EmployeeRequest $request)
     }
 
 
-//    public function employeeshowvacation()
-//    {
-//        $employees = Employee::orderBy('created_at', 'desc')->with('employeeAppointments')->get();
-//        return view('dashboard.employees.show-vacation-employee', compact('employees'));
-//    }
-
-
-
-
-
 
 }

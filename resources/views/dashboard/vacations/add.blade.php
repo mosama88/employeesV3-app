@@ -178,8 +178,7 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
+
     @endsection
 
 
@@ -222,7 +221,7 @@
                 <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
                 <script src="{{URL::asset('dashboard/assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
 
-                <script src="{{ asset('dashboard/assets/js/projects/add-vacation.js') }}"></script>
+                <script src="{{ URL::asset('dashboard/assets/js/projects/add-vacation.js') }}"></script>
 
 
 
