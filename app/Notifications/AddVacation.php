@@ -42,7 +42,7 @@ class AddVacation extends Notification
     {
         return [
             'id' => $this->vacationNotify->id,
-            'title' => 'تم أضافة أجازه جديدة :',
+            'title' => 'تم أضافة أجازه جديدة بواسطة :',
             'user' => Auth::user()->name,
         ];
     }

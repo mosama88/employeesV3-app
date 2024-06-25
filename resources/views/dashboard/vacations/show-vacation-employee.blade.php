@@ -52,6 +52,11 @@
                                         <th class="border-bottom-0">من</th>
                                         <th class="border-bottom-0">إلى</th>
                                         <th class="border-bottom-0">عدد الايام</th>
+                                        <th class="border-bottom-0">حالة الإجازة</th>
+                                        <th class="border-bottom-0">جهه</th>
+                                        <th class="border-bottom-0">ملاحظات</th>
+                                        <th class="border-bottom-0">العمليات</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,6 +70,33 @@
                                         <td>{{ $vacation->start }}</td>
                                         <td>{{ $vacation->to }}</td>
                                         <td>{{ $vacation->calculateTotalDaysExcludingFridays() }}</td>
+                                        <td>
+                                            @if ($vacation->status == 'pending')
+                                                <span class="badge badge-info">معلق</span>
+                                            @elseif ($vacation->status == 'approve')
+                                                <span class="badge badge-success">موافق عليه</span>
+                                            @elseif ($vacation->status == 'reject')
+                                                <span class="badge badge-danger">مرفوض</span>
+                                            @endif
+                                            <div class="{{ $vacation->status == '1' ? 'success' : 'danger' }} ml-1">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if ($vacation->department?->branch == null)
+                                                جهه خارجيه
+                                            @else
+                                                {{ $vacation->department->branch }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $vacation->notes }}</td>
+                                        <td>
+                                            @can('عرض الموظفين')
+                                            {{-- Show --}}
+                                            <a class="btn btn-outline-primary btn-sm"
+                                               href="{{ route('dashboard.employees.show', $employee->id) }}"><i
+                                                    class="fas fa-eye"></i></a>
+                                            @endcan
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
