@@ -288,5 +288,15 @@ class VacationController extends Controller
     return view('dashboard.vacations.show-vacation-employee', compact('vacation'));
 }
 
+
+public function markAsRead(Request $request)
+{
+
+$userUnreadNotification= auth::user()->unreadNotifications;
+if($userUnreadNotification){
+    $userUnreadNotification->markAsRead();
+    return back();
+}
 }
 
+}

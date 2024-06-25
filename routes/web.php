@@ -81,7 +81,7 @@ Route::middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::get('/search-vacations', [VacationController::class, 'search'])->name('vacations.search');
     Route::get('/restore/{id}', [VacationController::class, 'restore']);
     Route::get('/vacations/Detalis/{id}', [VacationController::class,'vacationDetalis'])->name('vacationDetalis');
-    // Route::view('Vacation/add', 'dashboard.vacations.add')->name('vacations.add');
+    Route::get('/read/all', [VacationController::class,'markAsRead'])->name('read-all');
     ##################################### End Dashboard Vacation ########################
     ##################################### Start Dashboard Vacation ######################
     Route::resource('/holidays', HolidayController::class);
@@ -127,5 +127,3 @@ require __DIR__ . '/auth.php';
 //    Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);
 //
 //});
-
-
