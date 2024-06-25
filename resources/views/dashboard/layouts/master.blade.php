@@ -30,3 +30,9 @@
 				@include('dashboard.layouts.footer-scripts')
 	</body>
 </html>
+<script>
+    setInterval(function (){
+        $("#notifications_count").load(window.location.href + " #notifications_count");
+        $("#unreadNotifications").load(window.location.href + " #unreadNotifications");
+    },3000);
+</script>

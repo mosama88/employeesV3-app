@@ -77,18 +77,22 @@
                                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                                 </svg><span class=" pulse"></span></a>
-                            <div class="dropdown-menu">
-                                <div class="menu-header-content bg-primary text-right">
-                                    <div class="d-flex">
-                                        <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات
+
+                                <div class="dropdown-menu">
+                                    <div class="menu-header-content bg-primary text-right">
+                                        <div class="d-flex">
+                                            <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
+                                            <span class="badge badge-pill badge-warning mr-auto my-auto float-left"><a
+                                                    href="{{route('dashboard.read-all')}}">تعين قراءة الكل</a></span>
+                                        </div>
+                                        <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">
+                                        <h6 style="color: yellow" id="notifications_count">
+                                            {{ auth()->user()->unreadNotifications->count() }}
                                         </h6>
-                                        <a href="{{route('dashboard.read-all')}}" class="badge badge-pill badge-warning mr-auto my-auto float-left">تعيين
-                                            قراءه</a>
+                                        </p>
                                     </div>
-                                    <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">لديك
-                                        {{ Auth::user()->unreadNotifications->count() }} غير مقروءة</p>
-                                </div>
-                                <div class="main-notification-list Notification-scroll">
+
+                                <div id="unreadNotifications" class="main-notification-list Notification-scroll">
                                     @if (auth()->user()->unreadNotifications->isEmpty())
                                         <div class="p-3 text-center">لا توجد أشعارات</div>
                                     @else

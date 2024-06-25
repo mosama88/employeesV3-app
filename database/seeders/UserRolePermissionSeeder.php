@@ -111,7 +111,7 @@ class UserRolePermissionSeeder extends Seeder
         ], [
             'name' => 'Super Admin',
             'email' => 'superadmin@dt.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('@Osama88'),
             'status' => 'active',
         ]);
         $superAdminUser->assignRole($superAdminRole);
@@ -131,7 +131,7 @@ class UserRolePermissionSeeder extends Seeder
         ], [
             'name' => 'Admin',
             'email' => 'admin@dt.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('@Osama88'),
             'status' => 'active',
         ]);
         $adminUser->assignRole($adminRole);
@@ -141,7 +141,7 @@ class UserRolePermissionSeeder extends Seeder
         ], [
             'name' => 'Staff',
             'email' => 'staff@dt.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('@Osama88'),
             'status' => 'inactive',
         ]);
         $staffUser->assignRole($staffRole);
