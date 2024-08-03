@@ -2,11 +2,11 @@
 @section('title', 'عرض أجازات الموظف')
 @section('css')
     <!-- Internal Data table css -->
-    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('dashboard/assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('dashboard/assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('dashboard/assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('dashboard/assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('dashboard/assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 @php
     $currentYear = date('Y');
@@ -17,7 +17,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">عرض أجازات الموظف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جدول عرض أجازات الموظف</span>
+                <h4 class="content-title mb-0 my-auto">عرض أجازات الموظف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    جدول عرض أجازات الموظف</span>
             </div>
         </div>
     </div>
@@ -44,8 +45,7 @@
                                                 @if ($employee->image)
                                                     <img alt="Responsive image" class="img-thumbnail wd-100p wd-sm-200"
                                                         src="{{ asset('dashboard/assets/images/uploads/employees/' . $employee->image->filename) }}"
-                                                        data-holder-rendered="true"><a
-                                                        href="#"><i
+                                                        data-holder-rendered="true"><a href="#"><i
                                                             class="fe fe-camera"></i></a>
                                                 @else
                                                     <img alt="Responsive image" class="img-thumbnail wd-100p wd-sm-200"
@@ -69,89 +69,90 @@
                                     </div>
                                     @can('بيانات الموظفين')
 
-                                    <div class="main-contact-info-body p-4 ps">
-                                        <div>
+                                        <div class="main-contact-info-body p-4 ps">
+                                            <div>
 
-                                        </div>
-                                        <div class="media-list pb-0">
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <div>
-                                                        <label>موبايل</label> <span
-                                                            class="tx-medium">{{ $employee->phone }}</span>
+                                            </div>
+                                            <div class="media-list pb-0">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <label>موبايل</label> <span
+                                                                class="tx-medium">{{ $employee->phone }}</span>
+                                                        </div>
+                                                        <div>
+                                                            <label>موبايل أخر</label> <span
+                                                                class="tx-medium">{{ $employee->alter_phone }}</span>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <label>موبايل أخر</label> <span
-                                                            class="tx-medium">{{ $employee->alter_phone }}</span>
+                                                </div>
+                                                <div class="media">
+                                                    <div class="media-body">
+
+
+                                                        <div>
+                                                            <label>تاريخ الميلاد</label> <span
+                                                                class="tx-medium">{{ $employee->birth_date }}</span>
+                                                        </div>
+                                                        <div>
+                                                            <label>تاريخ التعيين</label> <span
+                                                                class="tx-medium">{{ $employee->hiring_date }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <label>ضم خدمه</label>
+                                                            <span class="tx-medium">
+                                                                @php
+                                                                    $addServiceText = 'لا يوجد ضم خدمه';
+                                                                    if ($employee->add_service == 1) {
+                                                                        $addServiceText = 'سنه';
+                                                                    } elseif ($employee->add_service == 2) {
+                                                                        $addServiceText = 'سنتين';
+                                                                    } elseif ($employee->add_service > 2) {
+                                                                        $addServiceText =
+                                                                            $employee->add_service . ' سنوات';
+                                                                    }
+                                                                @endphp
+                                                                {{ $addServiceText }}
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <label>عدد سنوات الخدمه</label> <span
+                                                                class="tx-medium">{{ $employee->years_service }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <label>بداية أستلام العمل بالأداره</label> <span
+                                                                class="tx-medium">{{ $employee->start_from }}</span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label>الراحه الاسبوعيه</label> <span class="tx-medium">
+                                                                @foreach ($employee->employeeAppointments as $appointment)
+                                                                    {{ $appointment->name }}
+                                                                @endforeach
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="media mb-0">
+                                                    <div class="media-body">
+
+                                                        <div>
+                                                            <label>النيابة / مكتب</label> <span
+                                                                class="tx-medium">{{ $employee->department->branch }}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="media">
-                                                <div class="media-body">
-
-
-                                                    <div>
-                                                        <label>تاريخ الميلاد</label> <span
-                                                            class="tx-medium">{{ $employee->birth_date }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <label>تاريخ التعيين</label> <span
-                                                            class="tx-medium">{{ $employee->hiring_date }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <div>
-                                                        <label>ضم خدمه</label>
-                                                        <span class="tx-medium">
-                                                            @php
-                                                                $addServiceText = 'لا يوجد ضم خدمه';
-                                                                if ($employee->add_service == 1) {
-                                                                    $addServiceText = 'سنه';
-                                                                } elseif ($employee->add_service == 2) {
-                                                                    $addServiceText = 'سنتين';
-                                                                } elseif ($employee->add_service > 2) {
-                                                                    $addServiceText = $employee->add_service . ' سنوات';
-                                                                }
-                                                            @endphp
-                                                            {{ $addServiceText }}
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <label>عدد سنوات الخدمه</label> <span
-                                                            class="tx-medium">{{ $employee->years_service }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <div>
-                                                        <label>بداية أستلام العمل بالأداره</label> <span
-                                                            class="tx-medium">{{ $employee->start_from }}</span>
-                                                    </div>
-
-                                                    <div>
-                                                        <label>الراحه الاسبوعيه</label> <span class="tx-medium">
-                                                            @foreach ($employee->employeeAppointments as $appointment)
-                                                                {{ $appointment->name }}
-                                                            @endforeach
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="media mb-0">
-                                                <div class="media-body">
-
-                                                    <div>
-                                                        <label>النيابة / مكتب</label> <span
-                                                            class="tx-medium">{{ $employee->department->branch }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         @endcan
                                         <div class="ps__rail-x" style="left: 0px; top: 0px;">
                                             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -191,234 +192,230 @@
                         </div>
                     </div>
                     @can('عرض حساب الأجازات')
-                    <div class="col-12 mx-auto">
-                        <h4>حساب الاجازات</h4>
-                        <div class="table-responsive mg-t-20">
-                            <table class="table table-bordered">
+                        <div class="col-12 mx-auto">
+                            <h4>حساب الاجازات</h4>
+                            <div class="table-responsive mg-t-20">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            {{-- emergency --}}
+                                            <td>عارضه</td>
+                                            <td class="text-right">
+                                                @php
+                                                    $totalEmergencyDays = 0;
+                                                    foreach ($vacations as $vacation) {
+                                                        if (
+                                                            $vacation->type === 'emergency' &&
+                                                            $vacation->status === 'approve'
+                                                        ) {
+                                                            $totalEmergencyDays += $vacation->calculateTotalDaysExcludingFridays();
+                                                        }
+                                                    }
+
+                                                    echo $totalEmergencyDays;
+                                                @endphp
+                                            </td>
+                                            <td>
+                                                @php
+                                                    if ($totalEmergencyDays >= 7) {
+                                                        echo "<p style='color:red;'>رصيدك من أجازات العارضه قد نفذ</p>";
+                                                    } elseif ($totalEmergencyDays >= 5) {
+                                                        echo "<p style='color:orange;'>أحذر على وشك أنتهاء أجازات العارضه</p>";
+                                                    }
+                                                @endphp
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- regular --}}
+                                            <td><span>إعتيادى</span></td>
+                                            <td class="text-right">
+                                                @php
+                                                    $totalRegularDays = 0;
+                                                    foreach ($vacations as $vacation) {
+                                                        if (
+                                                            $vacation->type === 'regular' &&
+                                                            $vacation->status === 'approve'
+                                                        ) {
+                                                            $totalRegularDays += $vacation->calculateTotalDaysExcludingFridays();
+                                                        }
+                                                    }
+                                                    echo $totalRegularDays;
+                                                @endphp
+                                            </td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            {{-- Annual --}}
+                                            <td>سنوى</td>
+                                            <td class="text-right">
+                                                @php
+                                                    $totalAnnualDays = 0;
+                                                    foreach ($vacations as $vacation) {
+                                                        if (
+                                                            $vacation->type === 'Annual' &&
+                                                            $vacation->status === 'approve'
+                                                        ) {
+                                                            $totalAnnualDays += $vacation->calculateTotalDaysExcludingFridays();
+                                                        }
+                                                    }
+                                                    echo $totalAnnualDays;
+                                                @endphp
+                                            </td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            {{-- satisfying --}}
+                                            <td>مرضى</td>
+                                            <td class="text-right">
+                                                @php
+                                                    $totalSatisfyingDays = 0;
+                                                    foreach ($vacations as $vacation) {
+                                                        if (
+                                                            $vacation->type === 'satisfying' &&
+                                                            $vacation->status === 'approve'
+                                                        ) {
+                                                            $totalSatisfyingDays += $vacation->calculateTotalDaysExcludingFridays();
+                                                        }
+                                                    }
+                                                    echo $totalSatisfyingDays;
+                                                @endphp
+                                            </td>
+                                            <td> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive mg-t-40">
+                            <table class="table table-bordered text-md-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="wd-25p tx-center">الأجازه المستحقه من السنه
+                                            الحالية</th>
+                                        <th class="wd-25p tx-center">الاجازه السابق منحها فى السنه
+                                            الحالية</th>
+                                        <th class="wd-25p tx-center">الرصيد المتبقى من السنه الحالية
+                                        </th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        {{-- emergency --}}
-                                        <td>عارضه</td>
-                                        <td class="text-right">
+                                        <td class="tx-center">{{ $employee->num_of_days }}</td>
+                                        <td class="tx-center">
                                             @php
-                                                $totalEmergencyDays = 0;
-                                                foreach ($vacations as $vacation) {
-                                                    if (
-                                                        $vacation->type === 'emergency' &&
-                                                        $vacation->status === 'approve'
-                                                    ) {
-                                                        $totalEmergencyDays += $vacation->calculateTotalDaysExcludingFridays();
-                                                    }
-                                                }
-
-                                                echo $totalEmergencyDays;
+                                                $calcVacations =
+                                                    $totalRegularDays + $totalAnnualDays + $totalSatisfyingDays;
+                                                echo $calcVacations;
                                             @endphp
                                         </td>
-                                        <td>
+                                        <td class="tx-center">
                                             @php
-                                                if ($totalEmergencyDays >= 7) {
-                                                    echo "<p style='color:red;'>رصيدك من أجازات العارضه قد نفذ</p>";
-                                                } elseif ($totalEmergencyDays >= 5) {
-                                                    echo "<p style='color:orange;'>أحذر على وشك أنتهاء أجازات العارضه</p>";
-                                                }
+                                                $calcVacations =
+                                                    $totalRegularDays + $totalAnnualDays + $totalSatisfyingDays;
+                                                $remainingDays = $employee->num_of_days - $calcVacations;
+                                                echo $remainingDays;
                                             @endphp
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        {{-- regular --}}
-                                        <td><span>إعتيادى</span></td>
-                                        <td class="text-right">
-                                            @php
-                                                $totalRegularDays = 0;
-                                                foreach ($vacations as $vacation) {
-                                                    if (
-                                                        $vacation->type === 'regular' &&
-                                                        $vacation->status === 'approve'
-                                                    ) {
-                                                        $totalRegularDays += $vacation->calculateTotalDaysExcludingFridays();
-                                                    }
-                                                }
-                                                echo $totalRegularDays;
-                                            @endphp
-                                        </td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        {{-- Annual --}}
-                                        <td>سنوى</td>
-                                        <td class="text-right">
-                                            @php
-                                                $totalAnnualDays = 0;
-                                                foreach ($vacations as $vacation) {
-                                                    if (
-                                                        $vacation->type === 'Annual' &&
-                                                        $vacation->status === 'approve'
-                                                    ) {
-                                                        $totalAnnualDays += $vacation->calculateTotalDaysExcludingFridays();
-                                                    }
-                                                }
-                                                echo $totalAnnualDays;
-                                            @endphp
-                                        </td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        {{-- satisfying --}}
-                                        <td>مرضى</td>
-                                        <td class="text-right">
-                                            @php
-                                                $totalSatisfyingDays = 0;
-                                                foreach ($vacations as $vacation) {
-                                                    if (
-                                                        $vacation->type === 'satisfying' &&
-                                                        $vacation->status === 'approve'
-                                                    ) {
-                                                        $totalSatisfyingDays += $vacation->calculateTotalDaysExcludingFridays();
-                                                    }
-                                                }
-                                                echo $totalSatisfyingDays;
-                                            @endphp
-                                        </td>
-                                        <td> </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-
-                    <div class="table-responsive mg-t-40">
-                        <table class="table table-bordered text-md-nowrap mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="wd-25p tx-center">الأجازه المستحقه من السنه
-                                        الحالية</th>
-                                    <th class="wd-25p tx-center">الاجازه السابق منحها فى السنه
-                                        الحالية</th>
-                                    <th class="wd-25p tx-center">الرصيد المتبقى من السنه الحالية
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="tx-center">{{ $employee->num_of_days }}</td>
-                                    <td class="tx-center">
-                                        @php
-                                            $calcVacations =
-                                                $totalRegularDays +
-                                                $totalAnnualDays +
-                                                $totalSatisfyingDays;
-                                            echo $calcVacations;
-                                        @endphp
-                                    </td>
-                                    <td class="tx-center">
-                                        @php
-                                            $calcVacations =
-                                                $totalRegularDays +
-                                                $totalAnnualDays +
-                                                $totalSatisfyingDays;
-                                            $remainingDays = $employee->num_of_days - $calcVacations;
-                                            echo $remainingDays;
-                                        @endphp
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     @endcan
                     <div class="row mt-4 mb-4">
                         <div class="card-body">
 
-                        <div class="table-responsive">
-                    @can('عرض كل أجازات الموظف')
-                            <table id="example" class="table key-buttons text-md-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>نوع الأجازه</th>
-                                        <th>من</th>
-                                        <th>إلى</th>
-                                        <th>القائم بأعماله</th>
-                                        <th>عدد الأيام</th>
-                                        <th>حالة الاجازه</th>
-                                        <th>المرفقات</th>
+                            <div class="table-responsive">
+                                @can('عرض كل أجازات الموظف')
+                                    <table id="example" class="table key-buttons text-md-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>نوع الأجازه</th>
+                                                <th>من</th>
+                                                <th>إلى</th>
+                                                <th>القائم بأعماله</th>
+                                                <th>عدد الأيام</th>
+                                                <th>حالة الاجازه</th>
+                                                <th>المرفقات</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php $i=0; ?>
-                                    @foreach ($vacations as $index => $vacation)
-                                <?php $i++; ?>
-                                        <tr>
-                                            <th scope="row">{{ $i }}</th>
-                                            <td>{{ $vacation->typeVaction() }}</td>
-                                            <td>{{ $vacation->start }}</td>
-                                            <td>{{ $vacation->to }}</td>
-                                            <td>{{ $vacation->employee?->name }}</td>
-                                            <td>{{ $vacation->calculateTotalDaysExcludingFridays() }}</td>
-                                            <td>
-                                                @if (isset($vacation) && $vacation->status == 'pending')
-                                                    <span class="badge badge-info">معلق</span>
-                                                @elseif(isset($vacation) && $vacation->status == 'approve')
-                                                    <span class="badge badge-success">موافق</span>
-                                                @elseif(isset($vacation) && $vacation->status == 'reject')
-                                                    <span class="badge badge-danger">مرفوض</span>
-                                                @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 0; ?>
+                                            @foreach ($vacations as $index => $vacation)
+                                                <?php $i++; ?>
+                                                <tr>
+                                                    <th scope="row">{{ $i }}</th>
+                                                    <td>{{ $vacation->typeVaction() }}</td>
+                                                    <td>{{ $vacation->start }}</td>
+                                                    <td>{{ $vacation->to }}</td>
+                                                    <td>{{ $vacation->employee?->name }}</td>
+                                                    <td>{{ $vacation->calculateTotalDaysExcludingFridays() }}</td>
+                                                    <td>
+                                                        @if (isset($vacation) && $vacation->status == 'pending')
+                                                            <span class="badge badge-info">معلق</span>
+                                                        @elseif(isset($vacation) && $vacation->status == 'approve')
+                                                            <span class="badge badge-success">موافق</span>
+                                                        @elseif(isset($vacation) && $vacation->status == 'reject')
+                                                            <span class="badge badge-danger">مرفوض</span>
+                                                        @endif
 
-                                            <td>
-                                                @if ($vacation->image)
-                                                    <a class="btn btn-outline-primary btn-sm"
-                                                        href="{{ asset('dashboard/assets/images/uploads/vacations/' . $vacation->image->filename) }}"
-                                                        download>
-                                                        <i class="fas fa-download"></i>
-                                                    </a>
-                                                @else
-                                                    لا يوجد مرفقات
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            @endcan
+                                                    <td>
+                                                        @if ($vacation->image)
+                                                            <a class="btn btn-outline-primary btn-sm" target="_blank"
+                                                                href="{{ asset('dashboard/assets/images/uploads/vacations/' . $vacation->image->filename) }}"
+                                                                show>
+                                                                <i class="fas fa-download"></i>
+                                                            </a>
+                                                        @else
+                                                            لا يوجد مرفقات
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endcan
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
     </div>
-    </div>
 
-        <div class="main-navbar-backdrop"></div>
-        @endsection
+    <div class="main-navbar-backdrop"></div>
+@endsection
 
-        @section('js')
+@section('js')
 
-            <!-- Internal Data tables -->
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/jszip.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-            <script src="{{URL::asset('dashboard/assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-            <!--Internal  Datatable js -->
-            <script src="{{URL::asset('dashboard/assets/js/table-data.js')}}"></script>
-            <script>
-                function setActiveYear(year) {
-                    document.getElementById('selectedYear').textContent = year;
-                }
-            </script>
+    <!-- Internal Data tables -->
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('dashboard/assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{ URL::asset('dashboard/assets/js/table-data.js') }}"></script>
+    <script>
+        function setActiveYear(year) {
+            document.getElementById('selectedYear').textContent = year;
+        }
+    </script>
 @endsection
